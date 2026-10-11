@@ -192,8 +192,10 @@
   tech: [three.js, Rust, axum, Postgres, Fly.io]
   tags: [action-rpg, multiplayer, pvp, 3d]
   pixelArt: false
+  cover: ../assets/games/fightworld/gameplay.webp
   logo: ../assets/games/fightworld/logo-mark.png
-  screenshots: []
+  screenshots:
+    - {src: ../assets/games/fightworld/gameplay.webp, alt: A knight facing a skeleton necromancer on a grassy field beside a graveyard in FightWorld}
   sync:
     isPrivate: true
     description: null
@@ -207,21 +209,33 @@
 
 - id: parkour
   title: Parkour
-  order: 90
-  listed: false
+  order: 60
+  listed: true
   status: prototype
   genre: Third-person parkour
-  blurb: Run, jump, vault and climb across the rooftops of a modern city. An early vertical slice.
+  blurb: Run, vault and climb through a brick-and-glass city district. An early vertical slice with a score for every trick.
   description: |
-    A third-person 3D parkour game set in a modern city. Tricks earn points,
-    falls and failed tricks cost health, and the weather changes the
-    difficulty. The first version is a vertical slice of a single district.
+    Parkour is a third-person 3D parkour game set in a dense city district. It
+    is an early vertical slice: one plaza, alley and rooftop block to run
+    around in, with an animated character and an HDRI sky.
+
+    Moves depend on context. Press Jump near an obstacle and the character
+    vaults or climbs it, and how well you time the press decides the grade.
+    Rolling softens a landing, slides carry your speed, and ledges can be
+    grabbed, shimmied along and climbed.
+
+    Tricks earn points that build into combos. Failed tricks and long falls
+    cost health, and a fall from far enough up ends the run. It renders with
+    WebGPU where available and falls back to WebGL2, with keyboard and mouse
+    or a gamepad. Early days: weather and NPCs are still to come.
   playUrl: https://erikhellman.github.io/Parkour/
   repo: {owner: ErikHellman, name: Parkour}
   tech: [three.js, WebGPU, Rapier, TypeScript]
-  tags: [parkour, 3d, prototype]
+  tags: [parkour, 3d, prototype, singleplayer]
   pixelArt: false
-  screenshots: []
+  cover: ../assets/games/parkour/vault.webp
+  screenshots:
+    - {src: ../assets/games/parkour/vault.webp, alt: The runner vaulting a concrete planter in a city plaza in Parkour}
   sync:
     isPrivate: true
     description: A parkour game
