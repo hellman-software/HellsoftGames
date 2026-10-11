@@ -8,29 +8,49 @@ interface Props {
 const { status } = Astro.props;
 ---
 
-<span class={`status status--${status} notched`}>{STATUS_LABEL[status]}</span>
+<span class={`status status--${status}`}><span class="status__dot" aria-hidden="true"></span>{STATUS_LABEL[status]}</span>
 
 <style>
   .status {
-    display: inline-block;
-    font-family: var(--font-pixel);
-    font-size: 0.5rem;
+    --c: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     line-height: 1;
     text-transform: uppercase;
-    padding: 0.7em 0.9em;
-    color: var(--bg);
-    background: var(--muted);
+    padding: 0.55em 0.8em 0.55em 0.7em;
+    border-radius: var(--radius-pill);
+    color: var(--text);
+    background: rgba(10, 10, 18, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    white-space: nowrap;
+  }
+  :global(:root[data-theme='light']) .status {
+    color: #fff;
+  }
+  .status__dot {
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background: var(--c);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 30%, transparent), 0 0 10px var(--c);
   }
   .status--released {
-    background: var(--lime);
+    --c: var(--lime);
   }
   .status--playable {
-    background: var(--cyan);
+    --c: var(--cyan);
   }
   .status--playtest {
-    background: var(--yellow);
+    --c: var(--yellow);
   }
   .status--prototype {
-    background: var(--orange);
+    --c: var(--orange);
   }
 </style>

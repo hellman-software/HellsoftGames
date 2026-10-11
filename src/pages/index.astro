@@ -5,7 +5,8 @@ import AdSlot from '../components/AdSlot.astro';
 import { getListedGames } from '../lib/games';
 
 const games = await getListedGames();
-const AD_AFTER = 4;
+const [featured, ...rest] = games;
+const AD_AFTER = 3;
 ---
 
 <Base
@@ -13,29 +14,48 @@ const AD_AFTER = 4;
   description="Browser games by Erik Hellman (Hellsoft): action-adventures, dungeon crawlers, car-theft sandboxes and AI-driven worlds. Play them free in your browser."
 >
   <section class="hero">
-    <p class="hero__kicker label">Press start</p>
-    <h1 class="hero__title">HELLSOFT GAMES</h1>
-    <p class="hero__tagline">
-      Games I build for the browser. No installs, no accounts unless the game says so. Pick one and play.
+    <p class="hero__kicker label reveal" style="--i: 0">
+      <span class="hero__pulse" aria-hidden="true"></span>
+      {games.length} games · all playable in your browser
     </p>
+    <h1 class="hero__title reveal" style="--i: 1">
+      Games built for<br />
+      <span class="gradient-text">the browser.</span>
+    </h1>
+    <p class="hero__tagline reveal" style="--i: 2">
+      No installs, no accounts unless the game says so. Pick one and play.
+    </p>
+    <div class="hero__actions reveal" style="--i: 3">
+      <a class="btn" href="#games">
+        <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+        Browse games
+      </a>
+      <a class="btn btn--ghost" href="https://github.com/ErikHellman" rel="noopener">GitHub</a>
+    </div>
   </section>
 
   <AdSlot id="home-leaderboard" size="leaderboard" class="home-ad" />
 
-  <section id="games" aria-labelledby="games-heading">
-    <h2 id="games-heading" class="section-title">
-      <span class="section-title__arrow" aria-hidden="true">▶</span> Select game
-      <span class="section-title__count muted">[{games.length}]</span>
-    </h2>
+  <section id="games" aria-labelledby="games-heading" class="catalogue">
+    <h2 id="games-heading" class="visually-hidden">All games</h2>
+
+    {
+      featured && (
+        <div class="featured reveal" style="--i: 4">
+          <GameCard game={featured} featured />
+        </div>
+      )
+    }
+
     <ul class="grid">
       {
-        games.map((game, i) => (
+        rest.map((game, i) => (
           <>
-            <li>
+            <li class="reveal" style={`--i: ${5 + i}`}>
               <GameCard game={game} />
             </li>
             {i + 1 === AD_AFTER && (
-              <li class="grid__ad">
+              <li class="grid__ad reveal" style={`--i: ${6 + i}`}>
                 <AdSlot id="home-feed-1" size="card" />
               </li>
             )}
@@ -48,51 +68,59 @@ const AD_AFTER = 4;
 
 <style>
   .hero {
-    text-align: center;
-    padding-block: var(--space-5) var(--space-4);
+    padding-block: clamp(3rem, 9vw, 7rem) clamp(2rem, 5vw, 3.5rem);
+    max-width: 52rem;
   }
   .hero__kicker {
-    color: var(--accent-2);
-    margin: 0 0 var(--space-3);
-    animation: blink 1.2s steps(2) infinite;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    color: var(--text-2);
+    margin: 0 0 var(--space-4);
+    padding: 0.5em 0.9em 0.5em 0.7em;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: var(--surface);
   }
-  @keyframes blink {
-    50% {
-      opacity: 0;
+  .hero__pulse {
+    width: 0.55em;
+    height: 0.55em;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--lime) 55%, transparent);
+    animation: pulse 2.2s var(--ease) infinite;
+  }
+  @keyframes pulse {
+    70% {
+      box-shadow: 0 0 0 8px transparent;
+    }
+    100% {
+      box-shadow: 0 0 0 0 transparent;
     }
   }
   .hero__title {
-    font-size: clamp(1.4rem, 6vw, 3rem);
-    color: var(--text);
-    text-shadow:
-      3px 0 var(--magenta),
-      -3px 0 var(--cyan);
-    margin-bottom: var(--space-3);
-  }
-  .hero__tagline {
-    max-width: 38rem;
-    margin-inline: auto;
-    color: var(--muted);
-    font-size: 1.05rem;
-  }
-  .home-ad {
-    margin-block: var(--space-4) var(--space-5);
-  }
-  .section-title {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
     margin-bottom: var(--space-4);
   }
-  .section-title__arrow {
-    color: var(--accent);
+  .hero__tagline {
+    max-width: 36rem;
+    color: var(--text-2);
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    margin-bottom: var(--space-4);
   }
-  .section-title__count {
-    font-size: 0.7em;
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  .home-ad {
+    margin-block: 0 var(--space-5);
+  }
+  .featured {
+    margin-bottom: var(--space-4);
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
     gap: var(--space-4);
   }
   .grid > li {
