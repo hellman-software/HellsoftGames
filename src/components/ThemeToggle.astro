@@ -1,0 +1,73 @@
+<button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" data-theme-toggle>
+  <svg class="theme-toggle__icon theme-toggle__icon--sun" width="20" height="20" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true">
+    <path fill="currentColor" d="M4 0h2v2H4zM4 8h2v2H4zM0 4h2v2H0zM8 4h2v2H8zM1 1h1v1H1zM8 1h1v1H8zM1 8h1v1H1zM8 8h1v1H8zM3 3h4v4H3z" />
+  </svg>
+  <svg class="theme-toggle__icon theme-toggle__icon--moon" width="20" height="20" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true">
+    <path fill="currentColor" d="M3 1h3v1H4v1H3v4h1v1h2v1H3V8H2V7H1V3h1V2h1z" />
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: var(--surface);
+    border: 3px solid var(--border);
+    color: var(--yellow);
+    transition: transform var(--step) steps(2);
+  }
+  .theme-toggle:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 0 var(--shadow);
+  }
+  .theme-toggle__icon--sun {
+    display: none;
+  }
+  :global(:root[data-theme='light']) .theme-toggle__icon--sun {
+    display: block;
+  }
+  :global(:root[data-theme='light']) .theme-toggle__icon--moon {
+    display: none;
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const media = matchMedia('(prefers-color-scheme: dark)');
+
+  function stored(): string | null {
+    try {
+      return localStorage.getItem('theme');
+    } catch {
+      return null;
+    }
+  }
+
+  function apply(theme: 'light' | 'dark') {
+    root.dataset.theme = theme;
+    for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')) {
+      btn.setAttribute('aria-pressed', String(theme === 'light'));
+      btn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+    }
+  }
+
+  apply(root.dataset.theme === 'light' ? 'light' : 'dark');
+
+  for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')) {
+    btn.addEventListener('click', () => {
+      const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+      apply(next);
+      try {
+        localStorage.setItem('theme', next);
+      } catch {}
+    });
+  }
+
+  media.addEventListener('change', (e) => {
+    if (stored() === null) apply(e.matches ? 'dark' : 'light');
+  });
+</script>

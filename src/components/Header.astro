@@ -1,0 +1,85 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { withBase } from '../lib/url';
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand pixel" href={withBase('/')} aria-label="Hellsoft Games home">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__text">HELLSOFT<span class="brand__accent">GAMES</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a class="site-nav__link pixel" href={withBase('/') + '#games'}>Games</a>
+      <a class="site-nav__link pixel" href="https://github.com/ErikHellman" rel="noopener">GitHub</a>
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: var(--px) solid var(--border);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 64px;
+    padding-block: var(--space-2);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: var(--text);
+    margin: 0;
+    line-height: 1;
+  }
+  .brand:hover {
+    color: var(--text);
+  }
+  .brand__mark {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    background:
+      linear-gradient(var(--accent), var(--accent)) 0 0 / 8px 20px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) 12px 0 / 8px 20px no-repeat,
+      linear-gradient(var(--accent-2), var(--accent-2)) 4px 8px / 12px 4px no-repeat;
+  }
+  .brand__accent {
+    color: var(--accent);
+    margin-left: 0.4em;
+  }
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .site-nav__link {
+    font-size: 0.6rem;
+    text-decoration: none;
+    color: var(--muted);
+    margin: 0;
+    padding: var(--space-2) 0;
+  }
+  .site-nav__link:hover {
+    color: var(--accent);
+  }
+  @media (max-width: 480px) {
+    .brand__text {
+      font-size: 0.6rem;
+    }
+    .site-nav__link:first-child {
+      display: none;
+    }
+  }
+</style>

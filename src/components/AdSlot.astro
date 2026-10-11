@@ -1,0 +1,67 @@
+---
+/**
+ * Placeholder for an ad unit. Fixed dimensions per size so inserting a real
+ * ad later causes no layout shift. A future ad script can find every slot via
+ * `[data-ad-slot]` and read `data-ad-size` for the unit to request.
+ */
+interface Props {
+  /** Unique id for this placement, e.g. "home-leaderboard". */
+  id: string;
+  size: 'leaderboard' | 'rectangle' | 'card';
+  class?: string;
+}
+const { id, size, class: className } = Astro.props;
+const dims = { leaderboard: '728x90|320x50', rectangle: '300x250', card: 'native' }[size];
+---
+
+<aside class:list={['ad', `ad--${size}`, className]} data-ad-slot={id} data-ad-size={dims} aria-label="Advertisement">
+  <span class="ad__label">Ad</span>
+  <slot />
+</aside>
+
+<style>
+  .ad {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
+    background: var(--bg-2);
+    border: 2px dashed var(--muted);
+    opacity: 0.85;
+    overflow: hidden;
+  }
+  .ad__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    line-height: 1;
+    text-transform: uppercase;
+    padding: 4px 6px;
+    color: var(--muted);
+    background: var(--bg);
+  }
+  .ad--leaderboard {
+    width: 100%;
+    max-width: 320px;
+    height: 50px;
+  }
+  @media (min-width: 768px) {
+    .ad--leaderboard {
+      max-width: 728px;
+      height: 90px;
+    }
+  }
+  .ad--rectangle {
+    width: 300px;
+    max-width: 100%;
+    height: 250px;
+  }
+  .ad--card {
+    width: 100%;
+    min-height: 16rem;
+    height: 100%;
+  }
+</style>

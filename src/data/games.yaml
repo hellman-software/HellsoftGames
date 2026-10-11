@@ -1,0 +1,258 @@
+# Hellsoft Games catalogue.
+#
+# Everything here is hand-written EXCEPT the `sync:` block on each game,
+# which is owned by `npm run sync` (scripts/sync-games.mjs). Do not edit it by
+# hand; it is overwritten on every sync. `id` must be unique and is used as the
+# URL slug (/games/<id>/). Set `listed: false` to keep a game in the data but
+# off the site. Image paths are relative to this file.
+
+- id: fimbulvetr
+  title: Fimbulvetr
+  order: 10
+  listed: true
+  status: released
+  genre: Top-down action-adventure
+  blurb: A Zelda-like set in a Norse-myth world. Rescue the villagers taken by the Rime King before the great winter swallows everything.
+  description: |
+    Ask, a farmhand, sets out to rescue Embla and the villagers taken by the
+    servants of Hrímnir, the Rime King, whose rise brings on the Fimbulvetr:
+    the great winter that precedes the end of the world.
+
+    Fimbulvetr is a top-down action-adventure in the mould of A Link to the
+    Past. The world has seasons, weather and a day/night cycle. You learn galdr
+    (sung spells), take on side quests, hunt down heart pieces and clear
+    dungeons across eight regions. The whole game is playable from start to
+    finish, in English and Swedish.
+
+    It runs entirely in the browser, installs as a progressive web app and
+    saves locally, so you can pick it up where you left off.
+  playUrl: https://erikhellman.github.io/Fimbulvetr/
+  repo: {owner: ErikHellman, name: Fimbulvetr}
+  tech: [Phaser 4, TypeScript, Vite, PWA]
+  tags: [adventure, zelda-like, norse, pixel-art, singleplayer]
+  pixelArt: true
+  cover: ../assets/games/fimbulvetr/screenshot.png
+  logo: ../assets/games/fimbulvetr/icon.png
+  screenshots:
+    - {src: ../assets/games/fimbulvetr/screenshot.png, alt: Ask exploring a snowy village in Fimbulvetr}
+  sync:
+    isPrivate: false
+    description: A game project...
+    pushedAt: 2026-10-08T18:02:16Z
+    release:
+      tag: v1.0.0
+      name: null
+      publishedAt: null
+      source: package
+    syncedAt: 2026-10-11
+
+- id: fantasy-sim-world
+  title: Fantasy Sim World
+  order: 20
+  listed: true
+  status: playable
+  genre: AI-driven life simulation
+  blurb: A 3D fantasy village where a dozen AI villagers live, gossip, marry and fight. Everyone who opens the page watches the same village.
+  description: |
+    Fantasy Sim World is a living fantasy village rendered in 3D, in the
+    KayKit low-poly style. About a dozen villagers, each driven by a language
+    model, go about their lives on a server that runs around the clock. They
+    talk, make friends and enemies, marry, raise children and defend the
+    village against the dead at night and orc raiders by day.
+
+    There is weather, house fires, weddings and funerals, a coin economy,
+    billboards, villager ambitions, ghosts, animals and a daily newspaper, the
+    Valley Herald, that reports on what happened. Visitors can chat with the
+    villagers as guests. The music adapts to what is going on.
+
+    You do not control anyone. You watch, and everyone who opens the page sees
+    the same village at the same moment.
+  playUrl: https://fantasy-sim-world.fly.dev/
+  repo: {owner: ErikHellman, name: FantasySimWorld}
+  tech: [three.js, Preact, Rust, Fly.io]
+  tags: [simulation, ai, 3d, spectator, multiplayer]
+  pixelArt: false
+  cover: ../assets/games/fantasy-sim-world/village-day.jpg
+  logo: ../assets/games/fantasy-sim-world/logo.svg
+  screenshots:
+    - {src: ../assets/games/fantasy-sim-world/village-day.jpg, alt: The village in daylight}
+    - {src: ../assets/games/fantasy-sim-world/village-night.jpg, alt: The village at night, lit by torches}
+    - {src: ../assets/games/fantasy-sim-world/tavern.jpg, alt: Villagers gathered in the tavern}
+  sync:
+    isPrivate: true
+    description: null
+    pushedAt: 2026-10-11T12:28:23Z
+    release:
+      tag: v0.6.0
+      name: Fantasy Sim World v0.6.0
+      publishedAt: 2026-10-11T05:45:48Z
+      source: release
+    syncedAt: 2026-10-11
+
+- id: dungeoncrawl
+  title: DungeonCrawl
+  order: 30
+  listed: true
+  status: playable
+  genre: First-person roguelite
+  blurb: A real-time first-person dungeon crawler. Reach the exit before the clock runs out, twenty levels down to the Necromancer King.
+  description: |
+    DungeonCrawl is a browser-only, single-player, first-person dungeon
+    crawler with a roguelite structure. Levels are procedurally generated and
+    timed: reach the exit before time runs out, or die and start the same
+    depth again in a new layout.
+
+    Pick one of three classes, find loot, trade at shops, avoid traps and
+    fight bosses in sealed rooms. The final boss, the Necromancer King, waits
+    at depth 20.
+
+    It renders with WebGPU where available and falls back to WebGL2. Play
+    with keyboard and mouse or a gamepad on a desktop browser. Tablets work
+    with a controller or keyboard. Phones are not supported.
+  playUrl: https://erikhellman.github.io/DungeonCrawl/
+  repo: {owner: ErikHellman, name: DungeonCrawl}
+  tech: [Babylon.js 8, WebGPU, TypeScript, Vite]
+  tags: [roguelite, dungeon-crawler, first-person, 3d, singleplayer]
+  pixelArt: false
+  cover: ../assets/games/dungeoncrawl/gameplay.png
+  screenshots:
+    - {src: ../assets/games/dungeoncrawl/gameplay.png, alt: First-person view of a torch-lit dungeon corridor}
+  sync:
+    isPrivate: true
+    description: null
+    pushedAt: 2026-10-08T10:33:52Z
+    release: null
+    syncedAt: 2026-10-11
+
+- id: bilstold
+  title: Bilstöld
+  order: 40
+  listed: true
+  status: playable
+  genre: Top-down open-world action
+  blurb: GTA1-style car theft in a procedurally generated city. Steal cars, take payphone missions and play three gangs against each other.
+  description: |
+    Bilstöld ("car theft" in Swedish) is a top-down car-theft game in the
+    spirit of the first two GTA games. Cities are built from a seed, so every
+    city is different and any city can be revisited by entering its seed
+    again.
+
+    Steal any of 17 vehicle types, answer payphones for missions and play
+    three gangs off against each other. The police escalate through six
+    wanted levels, ending with army tanks. Four procedural radio stations
+    keep you company: Radio Bilstöld, Hårdrock FM, Dansbandet and Lugna
+    Favoriter.
+
+    Every sprite, sound and font is generated in code. There are no asset
+    files and no runtime dependencies. The game autosaves in your browser.
+  playUrl: https://erikhellman.github.io/bilstold/
+  repo: {owner: ErikHellman, name: bilstold}
+  tech: [TypeScript, Canvas 2D, Vite]
+  tags: [open-world, driving, procedural, pixel-art, singleplayer]
+  pixelArt: true
+  cover: ../assets/games/bilstold/screenshot.png
+  screenshots:
+    - {src: ../assets/games/bilstold/screenshot.png, alt: A yellow car driving down a city street, seen from above}
+  sync:
+    isPrivate: false
+    description: Bilstöld — a GTA1/GTA2-style top-down car-theft game for the browser, with seeded procedural cities
+    pushedAt: 2026-10-01T14:52:52Z
+    release:
+      tag: v0.1.0
+      name: null
+      publishedAt: null
+      source: package
+    syncedAt: 2026-10-11
+
+- id: fightworld
+  title: FightWorld
+  order: 50
+  listed: true
+  status: playtest
+  genre: Multiplayer action RPG
+  blurb: A cosy multiplayer PvPvE brawler. Pick a class, explore a shared fantasy world, fight monsters and other players, and grow your hero.
+  description: |
+    FightWorld is a multiplayer PvPvE fighting game in a cute fantasy setting.
+    Pick one of seven classes (Knight, Barbarian, Rogue, Ranger, Engineer,
+    Mage or Druid), create your hero and head out from the tavern into the
+    graveyard, the wilds and the forest edge.
+
+    Combat is third-person with three class skills and a dodge roll. Level
+    up to 30, find loot and gear, and take on the Skeleton Golem, the
+    Necromancer and the Black Knight. Every other player can be a friend or a
+    foe. The world is shared and persistent, with a day/night cycle, rain, a
+    minimap, a leaderboard and chat.
+
+    Sign in with Google or GitHub so your character is saved. Only your name
+    and account ID are stored. Keyboard, mouse and gamepad are supported, and
+    the music is synthesised in the browser. The game is in playtesting, so
+    expect rough edges.
+  playUrl: https://fightworld.fly.dev/
+  repo: {owner: ErikHellman, name: FightWorld}
+  tech: [three.js, Rust, axum, Postgres, Fly.io]
+  tags: [action-rpg, multiplayer, pvp, 3d]
+  pixelArt: false
+  logo: ../assets/games/fightworld/logo-mark.png
+  screenshots: []
+  sync:
+    isPrivate: true
+    description: null
+    pushedAt: 2026-10-09T06:47:54Z
+    release:
+      tag: v0.3.0
+      name: null
+      publishedAt: 2026-10-09T06:47:55Z
+      source: release
+    syncedAt: 2026-10-11
+
+- id: parkour
+  title: Parkour
+  order: 90
+  listed: false
+  status: prototype
+  genre: Third-person parkour
+  blurb: Run, jump, vault and climb across the rooftops of a modern city. An early vertical slice.
+  description: |
+    A third-person 3D parkour game set in a modern city. Tricks earn points,
+    falls and failed tricks cost health, and the weather changes the
+    difficulty. The first version is a vertical slice of a single district.
+  playUrl: https://erikhellman.github.io/Parkour/
+  repo: {owner: ErikHellman, name: Parkour}
+  tech: [three.js, WebGPU, Rapier, TypeScript]
+  tags: [parkour, 3d, prototype]
+  pixelArt: false
+  screenshots: []
+  sync:
+    isPrivate: true
+    description: A parkour game
+    pushedAt: 2026-10-05T11:20:10Z
+    release:
+      tag: v0.1.0
+      name: null
+      publishedAt: null
+      source: package
+    syncedAt: 2026-10-11
+
+- id: hellcart-race
+  title: HellCart Race
+  order: 95
+  listed: false
+  status: prototype
+  genre: Kart racing
+  blurb: A very simple 3D go-kart race against two AI opponents, written entirely by Claude Code in a day.
+  description: |
+    Race two AI opponents, one aggressive and one cautious, around an
+    elliptical track with hills. Ram them, watch your 10 HP, and switch between
+    a driver camera and an overview camera.
+  playUrl: https://erikhellman.github.io/hellcart-race/
+  repo: {owner: ErikHellman, name: hellcart-race}
+  tech: [React, Three.js, React Three Fiber, TypeScript]
+  tags: [racing, 3d, prototype]
+  pixelArt: false
+  screenshots: []
+  sync:
+    isPrivate: false
+    description: "A very simple gocart racing game written entirely by Claude Code. "
+    pushedAt: 2025-06-13T13:18:04Z
+    release: null
+    syncedAt: 2026-10-11

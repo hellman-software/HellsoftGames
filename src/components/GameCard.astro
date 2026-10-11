@@ -1,0 +1,147 @@
+---
+import { Image } from 'astro:assets';
+import type { Game } from '../lib/games';
+import StatusBadge from './StatusBadge.astro';
+import { withBase } from '../lib/url';
+
+interface Props {
+  game: Game;
+}
+const { game } = Astro.props;
+const { title, genre, blurb, status, playUrl, cover, logo, pixelArt } = game.data;
+const href = withBase(`/games/${game.id}/`);
+---
+
+<article class="card pixel-box">
+  <div class="card__media">
+    {
+      cover ? (
+        <Image src={cover} alt="" width={640} height={360} class:list={['card__cover', { pixelated: pixelArt }]} loading="lazy" />
+      ) : logo ? (
+        <div class="card__logo-wrap">
+          <Image src={logo} alt="" width={160} height={160} class="card__logo" loading="lazy" />
+        </div>
+      ) : (
+        <div class="card__placeholder pixel" aria-hidden="true">{title}</div>
+      )
+    }
+    <span class="card__status">
+      <StatusBadge status={status} />
+    </span>
+  </div>
+  <div class="card__body">
+    <p class="card__genre label muted">{genre}</p>
+    <h2 class="card__title">
+      <a class="card__link" href={href}>{title}</a>
+    </h2>
+    <p class="card__blurb">{blurb}</p>
+    <div class="card__actions">
+      <a class="btn card__play" href={playUrl} target="_blank" rel="noopener">Play ▶</a>
+      <span class="card__more label muted" aria-hidden="true">Details &gt;&gt;</span>
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform var(--step) steps(2), box-shadow var(--step) steps(2);
+  }
+  .card:hover,
+  .card:focus-within {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--accent);
+  }
+  .card__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-2);
+    border-bottom: var(--px) solid var(--border);
+    overflow: hidden;
+  }
+  .card__cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter var(--step) steps(2);
+  }
+  .card:hover .card__cover {
+    filter: brightness(1.08);
+  }
+  .card__logo-wrap {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 50% 60%, var(--glow), transparent 60%),
+      repeating-linear-gradient(90deg, transparent 0 15px, var(--border) 15px 16px),
+      repeating-linear-gradient(0deg, transparent 0 15px, var(--border) 15px 16px);
+  }
+  .card__logo {
+    width: 45%;
+    height: auto;
+  }
+  .card__placeholder {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+  .card__status {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+  }
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    flex: 1;
+  }
+  .card__genre {
+    margin: 0;
+  }
+  .card__title {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+  .card__link {
+    color: var(--text);
+    text-decoration: none;
+  }
+  /* The whole card is clickable via the title link's overlay. */
+  .card__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .card:hover .card__link {
+    color: var(--accent);
+  }
+  .card__blurb {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    flex: 1;
+  }
+  .card__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+  .card__play {
+    position: relative;
+    z-index: 1;
+  }
+  .card__more {
+    margin: 0;
+  }
+</style>

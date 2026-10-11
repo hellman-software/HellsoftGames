@@ -1,0 +1,36 @@
+---
+import type { Game } from '../lib/games';
+import { STATUS_LABEL } from '../lib/games';
+
+interface Props {
+  status: Game['data']['status'];
+}
+const { status } = Astro.props;
+---
+
+<span class={`status status--${status} notched`}>{STATUS_LABEL[status]}</span>
+
+<style>
+  .status {
+    display: inline-block;
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    line-height: 1;
+    text-transform: uppercase;
+    padding: 0.7em 0.9em;
+    color: var(--bg);
+    background: var(--muted);
+  }
+  .status--released {
+    background: var(--lime);
+  }
+  .status--playable {
+    background: var(--cyan);
+  }
+  .status--playtest {
+    background: var(--yellow);
+  }
+  .status--prototype {
+    background: var(--orange);
+  }
+</style>

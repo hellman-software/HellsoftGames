@@ -1,0 +1,34 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p class="pixel site-footer__brand">HELLSOFT GAMES</p>
+    <p class="muted">
+      © {year} Erik Hellman. Browser games built in the open. Source on
+      <a href="https://github.com/ErikHellman" rel="noopener">GitHub</a>.
+    </p>
+    <p class="muted site-footer__fine">INSERT COIN TO CONTINUE</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: var(--px) solid var(--border);
+    background: var(--bg-2);
+    padding-block: var(--space-5);
+    text-align: center;
+  }
+  .site-footer__brand {
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-shadow: 2px 0 var(--accent-2);
+  }
+  .site-footer__fine {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    margin: var(--space-3) 0 0;
+    opacity: 0.7;
+  }
+</style>
