@@ -1,0 +1,28 @@
+{
+  "name": "hellsoft-games",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "sync": "node scripts/sync-games.mjs",
+    "sync:dry": "node scripts/sync-games.mjs --dry-run",
+    "test": "node --test scripts/*.test.mjs",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource/press-start-2p": "^5.2.6",
+    "astro": "^7.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^5.9.3",
+    "yaml": "^2.8.1"
+  }
+}
