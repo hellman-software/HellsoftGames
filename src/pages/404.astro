@@ -5,21 +5,26 @@ import { withBase } from '../lib/url';
 
 <Base title="404" description="Page not found.">
   <section class="lost">
-    <p class="label muted">Error 404</p>
-    <h1 class="lost__title">GAME OVER</h1>
-    <p class="muted">That level does not exist. Perhaps it was never built, or the cartridge needs a blow.</p>
-    <a class="btn" href={withBase('/')}>Continue? ▶</a>
+    <p class="label muted reveal" style="--i: 0">Error 404</p>
+    <h1 class="lost__title reveal" style="--i: 1"><span class="gradient-text">Game over.</span></h1>
+    <p class="lost__copy reveal" style="--i: 2">That level does not exist. Perhaps it was never built, or the cartridge needs a blow.</p>
+    <a class="btn reveal" style="--i: 3" href={withBase('/')}>Continue?</a>
   </section>
 </Base>
 
 <style>
   .lost {
     text-align: center;
-    padding-block: var(--space-6);
+    padding-block: clamp(4rem, 15vh, 10rem);
+    max-width: 36rem;
+    margin-inline: auto;
   }
   .lost__title {
-    font-size: clamp(1.4rem, 6vw, 3rem);
-    color: var(--magenta);
-    text-shadow: 4px 4px 0 var(--shadow);
+    font-size: clamp(3rem, 10vw, 6rem);
+  }
+  .lost__copy {
+    color: var(--text-2);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-4);
   }
 </style>
