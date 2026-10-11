@@ -1,7 +1,7 @@
 # Hellsoft Games
 
 The website that catalogues the browser games built by Erik Hellman (Hellsoft).
-Live at <https://erikhellman.github.io/HellsoftGames/>.
+Live at <https://games.hellsoft.se/>.
 
 Built with [Astro](https://astro.build) as a fully static site. No client-side
 framework; the only JavaScript is the dark/light theme toggle.
@@ -10,7 +10,7 @@ framework; the only JavaScript is the dark/light theme toggle.
 
 ```bash
 npm install
-npm run dev        # http://localhost:4321/HellsoftGames/
+npm run dev        # http://localhost:4321/
 npm run build      # static output in dist/
 npm run preview    # serve dist/
 npm run check      # astro check (types)
