@@ -1,6 +1,9 @@
 ---
+import { ADSENSE_CLIENT, AD_UNITS, ADS_ENABLED } from '../lib/ads';
+
 /**
- * Placeholder for an ad unit. Fixed dimensions per size so inserting a real
+ * Ad unit. Renders an AdSense unit when the slot has a unit id in `lib/ads.ts`
+ * and this is a production build; otherwise a dashed placeholder. Fixed dimensions per size so inserting a real
  * ad later causes no layout shift. A future ad script can find every slot via
  * `[data-ad-slot]` and read `data-ad-size` for the unit to request.
  */
@@ -12,11 +15,35 @@ interface Props {
 }
 const { id, size, class: className } = Astro.props;
 const dims = { leaderboard: '728x90|320x50', rectangle: '300x250', card: 'native' }[size];
+const unit = AD_UNITS[id];
+const live = ADS_ENABLED && Boolean(unit);
 ---
 
-<aside class:list={['ad', `ad--${size}`, className]} data-ad-slot={id} data-ad-size={dims} aria-label="Advertisement">
-  <span class="ad__label">Ad</span>
-  <slot />
+<aside
+  class:list={['ad', `ad--${size}`, { 'ad--live': live }, className]}
+  data-ad-slot={id}
+  data-ad-size={dims}
+  aria-label="Advertisement"
+>
+  {
+    live ? (
+      <>
+        <ins
+          class="adsbygoogle"
+          data-ad-client={ADSENSE_CLIENT}
+          data-ad-slot={unit}
+          data-ad-format={size === 'leaderboard' ? 'horizontal' : 'auto'}
+          data-full-width-responsive="false"
+        />
+        <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </>
+    ) : (
+      <>
+        <span class="ad__label">Ad</span>
+        <slot />
+      </>
+    )
+  }
 </aside>
 
 <style>
@@ -30,6 +57,16 @@ const dims = { leaderboard: '728x90|320x50', rectangle: '300x250', card: 'native
     border: 2px dashed var(--muted);
     opacity: 0.85;
     overflow: hidden;
+  }
+  .ad--live {
+    background: none;
+    border: 0;
+    opacity: 1;
+  }
+  .ad--live :global(ins.adsbygoogle) {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
   .ad__label {
     position: absolute;
