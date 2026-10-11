@@ -65,8 +65,14 @@ The sync is a manual step. Run it, review `git diff`, commit.
 
 ## Ads
 
-Ad placements are placeholders rendered by
-[`src/components/AdSlot.astro`](src/components/AdSlot.astro). There are three:
+Ads are Google AdSense units rendered by
+[`src/components/AdSlot.astro`](src/components/AdSlot.astro). The publisher id and
+the unit id for each slot live in [`src/lib/ads.ts`](src/lib/ads.ts); the script
+is loaded from [`Base.astro`](src/layouts/Base.astro) and
+[`public/ads.txt`](public/ads.txt) authorises the publisher. Ads load in
+production builds only (`npm run build`), so `npm run dev` shows dashed
+placeholders. A slot with no unit id in `ads.ts` also stays a placeholder.
+There are three slots:
 
 | Slot id            | Where                                  | Size                      |
 | ------------------ | -------------------------------------- | ------------------------- |
@@ -74,9 +80,9 @@ Ad placements are placeholders rendered by
 | `home-feed-1`      | Home page, in the grid after 4th card  | native card               |
 | `game-bottom`      | Bottom of every game page              | 300×250                   |
 
-Each slot has fixed dimensions so a real ad causes no layout shift. When an
-ad network is connected, its script can find the slots via
-`document.querySelectorAll('[data-ad-slot]')` and read `data-ad-size`.
+Each slot has fixed dimensions so a real ad causes no layout shift. The
+leaderboard unit is a responsive horizontal display ad; the other two are
+300×250 display ads.
 
 ## Deploy
 
