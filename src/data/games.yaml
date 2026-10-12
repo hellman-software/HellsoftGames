@@ -72,7 +72,7 @@
 
     You do not control anyone. You watch, and everyone who opens the page sees
     the same village at the same moment.
-  playUrl: https://fantasy-sim-world.fly.dev/
+  playUrl: http://fantasy-sim-world.hellsoft.se/
   repo: {owner: ErikHellman, name: FantasySimWorld}
   tech: [three.js, Preact, Rust, Fly.io]
   tags: [simulation, ai, 3d, spectator, multiplayer]
