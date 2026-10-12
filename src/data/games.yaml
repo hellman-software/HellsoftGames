@@ -205,6 +205,47 @@
       source: release
     syncedAt: 2026-10-11
 
+- id: micro-mayhem
+  title: Micro Mayhem
+  order: 60
+  listed: true
+  status: playtest
+  genre: Toy kart racing
+  blurb: Big adventures. Tiny wheels. Race toy karts around three bedroom circuits, drift for boosts and unbox items. Play solo or race with friends online.
+  description: |
+    Micro Mayhem is a 3D toy kart racer set in a colourful bedroom. Pick one
+    of four toy drivers and three karts, then race around Block Boulevard,
+    Pillow Fort or Desk Dash, past giant alphabet blocks, cushions and pencils.
+
+    Drift through corners to charge a boost and collect six toy items to
+    shake up the race. Practise against seven bots, chase your personal best
+    in time trials, or join online races with up to eight players. Private
+    rooms let you invite friends, with bots filling the spare seats.
+
+    Play as a guest with a keyboard or gamepad. The game uses WebGPU where
+    available and falls back to WebGL2. This is a playable development build,
+    so expect rough edges while playtesting continues.
+  playUrl: https://micromayhem.fly.dev/
+  repo: {owner: ErikHellman, name: MicroMayhem}
+  tech: [Babylon.js 8, WebGPU, TypeScript, Rust, WebAssembly, WebRTC, Fly.io]
+  tags: [racing, kart-racing, multiplayer, 3d, singleplayer]
+  pixelArt: false
+  cover: ../assets/games/micro-mayhem/bedroom-block.png
+  screenshots:
+    - {src: ../assets/games/micro-mayhem/bedroom-block.png, alt: Render of Block Boulevard with a blue toy racing circuit and an alphabet-block gate in a bedroom}
+    - {src: ../assets/games/micro-mayhem/bedroom-pillow.png, alt: Render of the Pillow Fort bedroom circuit with a cushion fort in the centre}
+    - {src: ../assets/games/micro-mayhem/bedroom-desk.png, alt: Render of the elevated Desk Dash bedroom circuit supported by stacks of books}
+  sync:
+    isPrivate: true
+    description: Multi-player cart racing game running entirely in the browser
+    pushedAt: 2026-10-12T11:49:30Z
+    release:
+      tag: v0.1.0
+      name: null
+      publishedAt: null
+      source: package
+    syncedAt: 2026-10-12
+
 - id: parkour
   title: Parkour
   order: 90
