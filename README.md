@@ -33,6 +33,11 @@ hand-written fields freely; never edit `sync:` by hand.
 - `cover` is the card image (16:9 works best). Without a cover, `logo` is shown
   on a grid background instead.
 - Image paths are relative to the YAML file, e.g. `../assets/games/<id>/shot.png`.
+- `controls` lists the supported inputs: `keyboard-mouse`, `keyboard` (no mouse
+  needed), `gamepad` and `touch`. `devices` lists `desktop`, `tablet` and
+  `phone`; a device left out is shown crossed out as unsupported. Each entry
+  takes an optional `note`, shown as the icon's tooltip on the cards and in
+  full on the game page. Quote notes that contain commas.
 
 The schema is enforced at build time by [`src/content.config.ts`](src/content.config.ts),
 so a typo in a field name or a missing image fails `npm run build` rather than

@@ -3,7 +3,9 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import StatusBadge from '../../components/StatusBadge.astro';
 import AdSlot from '../../components/AdSlot.astro';
+import SupportIcon from '../../components/SupportIcon.astro';
 import { getListedGames, formatDate, paragraphs, repoUrl } from '../../lib/games';
+import { controlsOf, devicesOf } from '../../lib/support';
 import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
@@ -21,6 +23,10 @@ const updated = formatDate(sync?.pushedAt);
 const body = paragraphs(description || sync?.description || '');
 const hero = cover ?? screenshots[0]?.src ?? null;
 const gallery = screenshots.filter((s) => s.src !== hero);
+const support = [
+  { label: 'Controls', items: controlsOf(game) },
+  { label: 'Devices', items: devicesOf(game) },
+].filter((g) => g.items.length > 0);
 ---
 
 <Base title={title} description={blurb} image={hero ? hero.src : undefined}>
@@ -127,6 +133,26 @@ const gallery = screenshots.filter((s) => s.src !== hero);
             <dt class="label">Platform</dt>
             <dd>Web browser</dd>
           </div>
+          {support.map((group) => (
+            <div class="facts__row">
+              <dt class="label">{group.label}</dt>
+              <dd>
+                <ul class="support-list">
+                  {group.items.map((item) => (
+                    <li class:list={['support-list__item', { 'support-list__item--off': !item.supported }]}>
+                      <span class="support-list__icon">
+                        <SupportIcon type={item.type} crossed={!item.supported} />
+                      </span>
+                      <span>
+                        <span class="support-list__label">{item.label}</span>
+                        {item.note && <span class="support-list__note">{item.note}</span>}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
           <div class="facts__row">
             <dt class="label">Built with</dt>
             <dd>
@@ -357,6 +383,33 @@ const gallery = screenshots.filter((s) => s.src !== hero);
     flex-wrap: wrap;
     gap: var(--space-1);
     margin-top: var(--space-1);
+  }
+  .support-list {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-1);
+  }
+  .support-list__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-2);
+    align-items: start;
+  }
+  .support-list__item--off {
+    color: var(--muted);
+  }
+  .support-list__icon {
+    display: flex;
+    margin-top: 0.1rem;
+  }
+  .support-list__label {
+    display: block;
+    font-weight: 600;
+  }
+  .support-list__note {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--muted);
   }
   .chip--tag {
     color: var(--muted);

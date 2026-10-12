@@ -35,6 +35,11 @@
   logo: ../assets/games/fimbulvetr/icon.png
   screenshots:
     - {src: ../assets/games/fimbulvetr/screenshot.png, alt: Ask exploring a snowy village in Fimbulvetr}
+  controls:
+    - {type: keyboard, note: "WASD or the arrow keys. No mouse needed, and every key can be remapped."}
+    - {type: gamepad, note: "Xbox, PlayStation and other standard controllers."}
+  devices:
+    - {type: desktop, note: "Installs as an app and saves in your browser."}
   sync:
     isPrivate: false
     description: A game project...
@@ -78,6 +83,13 @@
     - {src: ../assets/games/fantasy-sim-world/village-day.jpg, alt: The village in daylight}
     - {src: ../assets/games/fantasy-sim-world/village-night.jpg, alt: The village at night, lit by torches}
     - {src: ../assets/games/fantasy-sim-world/tavern.jpg, alt: Villagers gathered in the tavern}
+  controls:
+    - {type: keyboard-mouse, note: "Drag to pan, scroll to zoom and click a villager to follow them. Type to chat."}
+    - {type: touch, note: "One finger pans, pinch to zoom, twist two fingers to turn."}
+  devices:
+    - {type: desktop}
+    - {type: tablet, note: "Gets the full desktop layout."}
+    - {type: phone, note: "A simpler layout with a tab bar."}
   sync:
     isPrivate: true
     description: null
@@ -117,6 +129,12 @@
   cover: ../assets/games/dungeoncrawl/gameplay.png
   screenshots:
     - {src: ../assets/games/dungeoncrawl/gameplay.png, alt: First-person view of a torch-lit dungeon corridor}
+  controls:
+    - {type: keyboard-mouse, note: "WASD to move, the mouse to look, left click to attack and right click to cast."}
+    - {type: gamepad, note: "Xbox-style controllers, including every menu."}
+  devices:
+    - {type: desktop, note: "Renders with WebGPU, or WebGL2 where WebGPU is missing."}
+    - {type: tablet, note: "Only with a controller or a physical keyboard connected."}
   sync:
     isPrivate: true
     description: null
@@ -153,6 +171,11 @@
   cover: ../assets/games/bilstold/screenshot.png
   screenshots:
     - {src: ../assets/games/bilstold/screenshot.png, alt: A yellow car driving down a city street, seen from above}
+  controls:
+    - {type: keyboard, note: "WASD or the arrow keys to drive, Space for the handbrake. No mouse needed."}
+    - {type: gamepad, note: "Xbox-style layout; PlayStation controllers work too."}
+  devices:
+    - {type: desktop, note: "Autosaves in your browser."}
   sync:
     isPrivate: false
     description: Bilstöld — a GTA1/GTA2-style top-down car-theft game for the browser, with seeded procedural cities
@@ -196,6 +219,11 @@
   logo: ../assets/games/fightworld/logo-mark.png
   screenshots:
     - {src: ../assets/games/fightworld/gameplay.webp, alt: A knight facing a skeleton necromancer on a grassy field beside a graveyard in FightWorld}
+  controls:
+    - {type: keyboard-mouse, note: "WASD to move, the mouse to look and aim. Signing in and creating a hero need a keyboard."}
+    - {type: gamepad, note: "Xbox, PlayStation and Switch controllers, with matching on-screen button hints."}
+  devices:
+    - {type: desktop}
   sync:
     isPrivate: true
     description: null
@@ -236,6 +264,11 @@
   cover: ../assets/games/parkour/vault.webp
   screenshots:
     - {src: ../assets/games/parkour/vault.webp, alt: The runner vaulting a concrete planter in a city plaza in Parkour}
+  controls:
+    - {type: keyboard-mouse, note: "WASD to run, the mouse to look, Space to jump, vault and climb."}
+    - {type: gamepad, note: "Standard controllers."}
+  devices:
+    - {type: desktop, note: "Renders with WebGPU, or WebGL2 where WebGPU is missing."}
   sync:
     isPrivate: true
     description: A parkour game
