@@ -1,0 +1,129 @@
+---
+import type { Game } from '../lib/games';
+import { controlsOf, devicesOf, type SupportEntry } from '../lib/support';
+import SupportIcon from './SupportIcon.astro';
+
+interface Props {
+  game: Game;
+}
+const { game } = Astro.props;
+const groups: { label: string; items: SupportEntry[] }[] = [
+  { label: 'Controls', items: controlsOf(game) },
+  { label: 'Devices', items: devicesOf(game) },
+].filter((g) => g.items.length > 0);
+const tipId = (type: string) => `support-${game.id}-${type}`;
+---
+
+{
+  groups.length > 0 && (
+    <div class="support">
+      {groups.map((group) => (
+        <ul class="support__group" aria-label={group.label}>
+          {group.items.map((item) => (
+            <li>
+              <span
+                class:list={['support__item', { 'support__item--off': !item.supported }]}
+                tabindex="0"
+                role="img"
+                aria-labelledby={tipId(item.type)}
+              >
+                <SupportIcon type={item.type} crossed={!item.supported} size="1.15rem" />
+                <span class="support__tip" id={tipId(item.type)} role="tooltip">
+                  <strong class="support__tip-title">{item.label}</strong>
+                  {item.note && <span class="support__tip-note">{item.note}</span>}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  )
+}
+
+<style>
+  .support {
+    /* The tooltips anchor here rather than to each icon, so they never spill out of the card. */
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-1);
+  }
+  .support__group {
+    display: flex;
+    gap: 0.3rem;
+  }
+  .support__group + .support__group {
+    padding-left: var(--space-2);
+    border-left: 1px solid var(--border);
+  }
+  .support__item {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-2);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    cursor: help;
+    transition:
+      color var(--fast) var(--ease),
+      border-color var(--fast) var(--ease);
+  }
+  .support__item:hover,
+  .support__item:focus-visible {
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+  .support__item:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 2px;
+  }
+  .support__item--off {
+    color: var(--muted);
+    opacity: 0.55;
+    background: transparent;
+  }
+  .support__tip {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 0.5rem);
+    width: max-content;
+    max-width: min(18rem, 100%);
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius-sm);
+    background: var(--surface-solid);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-2);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    text-align: left;
+    color: var(--text-2);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition:
+      opacity var(--fast) var(--ease),
+      transform var(--fast) var(--ease),
+      visibility var(--fast);
+  }
+  .support__tip-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--text);
+  }
+  /* :focus as well as :hover, so a tap on a touch screen opens the tip too. */
+  .support__item:hover .support__tip,
+  .support__item:focus .support__tip {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+</style>

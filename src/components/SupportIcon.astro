@@ -1,0 +1,25 @@
+---
+import { SUPPORT_ICON, type SupportType } from '../lib/support';
+
+interface Props {
+  type: SupportType;
+  /** Draws a slash through the icon. */
+  crossed?: boolean;
+  /** CSS length for the width and height. Set here since a parent's scoped styles don't reach this element. */
+  size?: string;
+}
+const { type, crossed = false, size = '1.25rem' } = Astro.props;
+const body = SUPPORT_ICON[type] + (crossed ? '<path d="M3 3l18 18"/>' : '');
+---
+
+<svg
+  style={{ width: size, height: size, flex: 'none' }}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  set:html={body}
+/>
