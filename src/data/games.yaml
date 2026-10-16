@@ -26,7 +26,7 @@
 
     It runs entirely in the browser, installs as a progressive web app and
     saves locally, so you can pick it up where you left off.
-  playUrl: https://erikhellman.github.io/Fimbulvetr/
+  playUrl: https://fimbulvetr.hellman.cloud/
   repo: {owner: ErikHellman, name: Fimbulvetr}
   tech: [Phaser 4, TypeScript, Vite, PWA]
   tags: [adventure, zelda-like, norse, pixel-art, singleplayer]
@@ -163,7 +163,7 @@
 
     Every sprite, sound and font is generated in code. There are no asset
     files and no runtime dependencies. The game autosaves in your browser.
-  playUrl: https://erikhellman.github.io/bilstold/
+  playUrl: https://bilstold.hellman.cloud/
   repo: {owner: ErikHellman, name: bilstold}
   tech: [TypeScript, Canvas 2D, Vite]
   tags: [open-world, driving, procedural, pixel-art, singleplayer]
