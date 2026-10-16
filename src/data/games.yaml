@@ -105,7 +105,7 @@
   title: DungeonCrawl
   order: 30
   listed: true
-  status: playable
+  status: released
   genre: First-person roguelite
   blurb: A real-time first-person dungeon crawler. Reach the exit before the clock runs out, twenty levels down to the Necromancer King.
   description: |
@@ -146,7 +146,7 @@
   title: Bilstöld
   order: 40
   listed: true
-  status: playable
+  status: released
   genre: Top-down open-world action
   blurb: GTA1-style car theft in a procedurally generated city. Steal cars, take payphone missions and play three gangs against each other.
   description: |
