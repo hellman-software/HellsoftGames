@@ -32,9 +32,25 @@ const support = [
 
 <Base title={title} description={blurb} image={hero ? hero.src : undefined}>
   <article class="game">
-    <div class="game__hero reveal">
+    <div class:list={['game__hero reveal', { 'game__hero--video': video }]}>
       {
-        hero ? (
+        video ? (
+          <video
+            class:list={['game__hero-img', { pixelated: pixelArt }]}
+            aria-label={video.label}
+            poster={poster?.src}
+            width="1280"
+            height="720"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+          >
+            <source src={withBase(video.src)} type="video/mp4" />
+            <a href={withBase(video.src)}>Watch {title} gameplay</a>
+          </video>
+        ) : hero ? (
           <Image
             src={hero}
             alt={screenshots[0]?.alt ?? `${title} screenshot`}
@@ -76,26 +92,6 @@ const support = [
         </div>
       </div>
     </div>
-
-    {video && (
-      <div class="game__video reveal">
-        <video
-          class:list={{ pixelated: pixelArt }}
-          aria-label={video.label}
-          poster={poster?.src}
-          width="1280"
-          height="720"
-          autoplay
-          muted
-          loop
-          playsinline
-          controls
-        >
-          <source src={withBase(video.src)} type="video/mp4" />
-          <a href={withBase(video.src)}>Watch {title} gameplay</a>
-        </video>
-      </div>
-    )}
 
     <div class="game__layout">
       <section class="game__about reveal" style="--i: 1" aria-labelledby="about-heading">
@@ -333,17 +329,12 @@ const support = [
     flex-wrap: wrap;
     gap: var(--space-2);
   }
-  .game__video {
-    overflow: hidden;
-    border-radius: var(--radius-lg);
-    margin-bottom: var(--space-5);
-    background: var(--bg-2);
+  .game__hero--video .game__hero-overlay {
+    padding-bottom: calc(clamp(1.25rem, 4vw, 3rem) + 3.5rem);
+    pointer-events: none;
   }
-  .game__video video {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
+  .game__hero--video .game__hero-overlay a {
+    pointer-events: auto;
   }
   .game__layout {
     display: grid;
