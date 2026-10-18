@@ -2,6 +2,8 @@ import { defineCollection, z } from 'astro:content';
 import { file } from 'astro/loaders';
 
 export const STATUSES = ['released', 'playable', 'playtest', 'prototype', 'archived'] as const;
+export const CONTROLS = ['keyboard-mouse', 'keyboard', 'gamepad', 'touch'] as const;
+export const DEVICES = ['desktop', 'tablet', 'phone'] as const;
 
 /** YAML loaders may parse unquoted timestamps as Date objects; normalise to ISO strings. */
 const isoDate = z.union([z.string(), z.date()]).transform((v) => (v instanceof Date ? v.toISOString() : v));
@@ -27,6 +29,9 @@ const games = defineCollection({
       logo: image().optional(),
       video: z.object({ src: z.string().startsWith('/'), label: z.string() }).optional(),
       screenshots: z.array(z.object({ src: image(), alt: z.string() })).default([]),
+      // Supported inputs and devices; `note` is the hover text. A device left out is shown as unsupported.
+      controls: z.array(z.object({ type: z.enum(CONTROLS), note: z.string().optional() })).default([]),
+      devices: z.array(z.object({ type: z.enum(DEVICES), note: z.string().optional() })).default([]),
       // --- owned by scripts/sync-games.mjs ---
       sync: z
         .object({

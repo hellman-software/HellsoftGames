@@ -1,10 +1,11 @@
 ---
-import '@fontsource/press-start-2p/latin-400.css';
-import fontUrl from '@fontsource/press-start-2p/files/press-start-2p-latin-400-normal.woff2?url';
+import '@fontsource-variable/space-grotesk/index.css';
+import fontUrl from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { withBase } from '../lib/url';
+import { ADS_ENABLED, adsenseScriptSrc } from '../lib/ads';
 
 interface Props {
   title: string;
@@ -38,6 +39,7 @@ const ogImage = image ? new URL(image, Astro.site) : null;
     <meta property="og:url" content={canonical} />
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    {ADS_ENABLED && <script is:inline async src={adsenseScriptSrc} crossorigin="anonymous" />}
     <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
     <script is:inline>
       (function () {
@@ -56,7 +58,7 @@ const ogImage = image ? new URL(image, Astro.site) : null;
     </script>
   </head>
   <body>
-    <a class="skip-link pixel" href="#main">Skip to content</a>
+    <a class="skip-link display" href="#main">Skip to content</a>
     <Header />
     <main id="main" class="container">
       <slot />
@@ -72,9 +74,10 @@ const ogImage = image ? new URL(image, Astro.site) : null;
     left: var(--gutter);
     z-index: 10000;
     padding: var(--space-2) var(--space-3);
-    background: var(--accent);
+    background: var(--text);
     color: var(--bg);
-    font-size: 0.6rem;
+    font-size: 0.9rem;
+    border-radius: var(--radius-sm);
     text-decoration: none;
   }
   .skip-link:focus {

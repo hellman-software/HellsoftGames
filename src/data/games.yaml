@@ -35,6 +35,11 @@
   logo: ../assets/games/fimbulvetr/icon.png
   screenshots:
     - {src: ../assets/games/fimbulvetr/screenshot.png, alt: Ask exploring a snowy village in Fimbulvetr}
+  controls:
+    - {type: keyboard, note: "WASD or the arrow keys. No mouse needed, and every key can be remapped."}
+    - {type: gamepad, note: "Xbox, PlayStation and other standard controllers."}
+  devices:
+    - {type: desktop, note: "Installs as an app and saves in your browser."}
   sync:
     isPrivate: false
     description: A game project...
@@ -78,6 +83,13 @@
     - {src: ../assets/games/fantasy-sim-world/village-day.jpg, alt: The village in daylight}
     - {src: ../assets/games/fantasy-sim-world/village-night.jpg, alt: The village at night, lit by torches}
     - {src: ../assets/games/fantasy-sim-world/tavern.jpg, alt: Villagers gathered in the tavern}
+  controls:
+    - {type: keyboard-mouse, note: "Drag to pan, scroll to zoom and click a villager to follow them. Type to chat."}
+    - {type: touch, note: "One finger pans, pinch to zoom, twist two fingers to turn."}
+  devices:
+    - {type: desktop}
+    - {type: tablet, note: "Gets the full desktop layout."}
+    - {type: phone, note: "A simpler layout with a tab bar."}
   sync:
     isPrivate: true
     description: null
@@ -117,6 +129,12 @@
   cover: ../assets/games/dungeoncrawl/gameplay.png
   screenshots:
     - {src: ../assets/games/dungeoncrawl/gameplay.png, alt: First-person view of a torch-lit dungeon corridor}
+  controls:
+    - {type: keyboard-mouse, note: "WASD to move, the mouse to look, left click to attack and right click to cast."}
+    - {type: gamepad, note: "Xbox-style controllers, including every menu."}
+  devices:
+    - {type: desktop, note: "Renders with WebGPU, or WebGL2 where WebGPU is missing."}
+    - {type: tablet, note: "Only with a controller or a physical keyboard connected."}
   sync:
     isPrivate: true
     description: null
@@ -159,6 +177,11 @@
     - {src: ../assets/games/bilstold/police-chase.png, alt: A police car chasing vehicles through a busy city intersection}
     - {src: ../assets/games/bilstold/bruksorten-winter.png, alt: Driving through snow-covered streets in Bruksorten}
     - {src: ../assets/games/bilstold/huvudstaden-night.png, alt: Cars and an explosion at a nighttime intersection in Huvudstaden}
+  controls:
+    - {type: keyboard, note: "WASD or the arrow keys to drive, Space for the handbrake. No mouse needed."}
+    - {type: gamepad, note: "Xbox-style layout; PlayStation controllers work too."}
+  devices:
+    - {type: desktop, note: "Autosaves in your browser."}
   sync:
     isPrivate: false
     description: Bilstöld — a GTA1/GTA2-style top-down car-theft game for the browser, with seeded procedural cities
@@ -198,8 +221,15 @@
   tech: [three.js, Rust, axum, Postgres, Fly.io]
   tags: [action-rpg, multiplayer, pvp, 3d]
   pixelArt: false
+  cover: ../assets/games/fightworld/gameplay.webp
   logo: ../assets/games/fightworld/logo-mark.png
-  screenshots: []
+  screenshots:
+    - {src: ../assets/games/fightworld/gameplay.webp, alt: A knight facing a skeleton necromancer on a grassy field beside a graveyard in FightWorld}
+  controls:
+    - {type: keyboard-mouse, note: "WASD to move, the mouse to look and aim. Signing in and creating a hero need a keyboard."}
+    - {type: gamepad, note: "Xbox, PlayStation and Switch controllers, with matching on-screen button hints."}
+  devices:
+    - {type: desktop}
   sync:
     isPrivate: true
     description: null
@@ -213,7 +243,7 @@
 
 - id: micro-mayhem
   title: Micro Mayhem
-  order: 60
+  order: 70
   listed: true
   status: playtest
   genre: Toy kart racing
@@ -241,6 +271,11 @@
     - {src: ../assets/games/micro-mayhem/bedroom-block.png, alt: Render of Block Boulevard with a blue toy racing circuit and an alphabet-block gate in a bedroom}
     - {src: ../assets/games/micro-mayhem/bedroom-pillow.png, alt: Render of the Pillow Fort bedroom circuit with a cushion fort in the centre}
     - {src: ../assets/games/micro-mayhem/bedroom-desk.png, alt: Render of the elevated Desk Dash bedroom circuit supported by stacks of books}
+  controls:
+    - {type: keyboard, note: "WASD or the arrow keys to drive, Space to drift, E to use an item and R to recover. Keys can be remapped."}
+    - {type: gamepad, note: "Standard controllers, including menu navigation and optional vibration."}
+  devices:
+    - {type: desktop, note: "Renders with WebGPU, or WebGL2 where WebGPU is missing."}
   sync:
     isPrivate: true
     description: Multi-player cart racing game running entirely in the browser
@@ -254,21 +289,38 @@
 
 - id: parkour
   title: Parkour
-  order: 90
-  listed: false
+  order: 60
+  listed: true
   status: prototype
   genre: Third-person parkour
-  blurb: Run, jump, vault and climb across the rooftops of a modern city. An early vertical slice.
+  blurb: Run, vault and climb through a brick-and-glass city district. An early vertical slice with a score for every trick.
   description: |
-    A third-person 3D parkour game set in a modern city. Tricks earn points,
-    falls and failed tricks cost health, and the weather changes the
-    difficulty. The first version is a vertical slice of a single district.
+    Parkour is a third-person 3D parkour game set in a dense city district. It
+    is an early vertical slice: one plaza, alley and rooftop block to run
+    around in, with an animated character and an HDRI sky.
+
+    Moves depend on context. Press Jump near an obstacle and the character
+    vaults or climbs it, and how well you time the press decides the grade.
+    Rolling softens a landing, slides carry your speed, and ledges can be
+    grabbed, shimmied along and climbed.
+
+    Tricks earn points that build into combos. Failed tricks and long falls
+    cost health, and a fall from far enough up ends the run. It renders with
+    WebGPU where available and falls back to WebGL2, with keyboard and mouse
+    or a gamepad. Early days: weather and NPCs are still to come.
   playUrl: https://erikhellman.github.io/Parkour/
   repo: {owner: ErikHellman, name: Parkour}
   tech: [three.js, WebGPU, Rapier, TypeScript]
-  tags: [parkour, 3d, prototype]
+  tags: [parkour, 3d, prototype, singleplayer]
   pixelArt: false
-  screenshots: []
+  cover: ../assets/games/parkour/vault.webp
+  screenshots:
+    - {src: ../assets/games/parkour/vault.webp, alt: The runner vaulting a concrete planter in a city plaza in Parkour}
+  controls:
+    - {type: keyboard-mouse, note: "WASD to run, the mouse to look, Space to jump, vault and climb."}
+    - {type: gamepad, note: "Standard controllers."}
+  devices:
+    - {type: desktop, note: "Renders with WebGPU, or WebGL2 where WebGPU is missing."}
   sync:
     isPrivate: true
     description: A parkour game

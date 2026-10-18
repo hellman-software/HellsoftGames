@@ -20,6 +20,8 @@ body {
   line-height: 1.6;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 img,
 svg {
@@ -30,9 +32,10 @@ svg {
 a {
   color: var(--link);
   text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
 }
 a:hover {
-  color: var(--accent);
+  color: var(--text);
 }
 p {
   margin: 0 0 var(--space-3);
@@ -48,36 +51,58 @@ button {
   cursor: pointer;
 }
 
+/* ---------- ambient background ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 36rem at 12% -10%, var(--glow), transparent 60%),
+    radial-gradient(50rem 32rem at 95% 8%, var(--glow-2), transparent 60%),
+    radial-gradient(40rem 30rem at 50% 110%, rgba(139, 92, 246, 0.16), transparent 60%);
+}
+
 /* ---------- typography ---------- */
 h1,
 h2,
 h3,
-.pixel {
-  font-family: var(--font-pixel);
-  font-weight: 400;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   margin: 0 0 var(--space-3);
   text-wrap: balance;
 }
 h1 {
-  font-size: clamp(1.1rem, 4vw, 2rem);
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 h2 {
-  font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
 }
 h3 {
-  font-size: 0.8rem;
+  font-size: 1.15rem;
 }
 .label {
-  font-family: var(--font-pixel);
-  font-size: 0.6rem;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .muted {
   color: var(--muted);
+}
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 .visually-hidden {
   position: absolute;
@@ -93,8 +118,9 @@ h3 {
 
 /* ---------- focus ---------- */
 :focus-visible {
-  outline: 3px solid var(--cyan);
+  outline: 2px solid var(--cyan);
   outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* ---------- layout ---------- */
@@ -106,103 +132,109 @@ h3 {
 }
 main {
   flex: 1;
-  padding-block: var(--space-4) var(--space-6);
+  padding-block: var(--space-4) var(--space-7);
 }
 
-/* ---------- pixel chrome ---------- */
-.pixel-box {
-  border: var(--px) solid var(--border);
+/* ---------- surfaces ---------- */
+.panel {
   background: var(--surface);
-  box-shadow: var(--px) var(--px) 0 var(--shadow);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
 }
-.notched {
-  clip-path: polygon(
-    var(--px) 0,
-    calc(100% - var(--px)) 0,
-    100% var(--px),
-    100% calc(100% - var(--px)),
-    calc(100% - var(--px)) 100%,
-    var(--px) 100%,
-    0 calc(100% - var(--px)),
-    0 var(--px)
-  );
-}
+
+/* ---------- buttons ---------- */
 .btn {
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  font-family: var(--font-pixel);
-  font-size: 0.65rem;
+  gap: 0.5em;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   line-height: 1;
-  text-transform: uppercase;
   text-decoration: none;
-  padding: 0.85em 1.2em;
+  padding: 0.85em 1.35em;
   min-height: 44px;
-  color: var(--bg);
-  background: var(--accent);
+  color: var(--on-accent);
+  background: var(--gradient);
+  background-size: 160% 100%;
+  background-position: 0% 50%;
   border: 0;
-  transition: transform var(--step) steps(2), background var(--step) steps(2);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 24px -8px var(--glow);
+  transition:
+    transform var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease),
+    background-position var(--slow) var(--ease);
 }
 .btn:hover,
 .btn:focus-visible {
-  color: var(--bg);
-  background: var(--accent-2);
-  transform: translate(-1px, -1px);
+  color: var(--on-accent);
+  transform: translateY(-1px);
+  background-position: 100% 50%;
+  box-shadow: 0 12px 32px -8px var(--glow), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
 }
 .btn:active {
-  transform: translate(1px, 1px);
+  transform: translateY(0);
 }
 .btn--ghost {
-  background: transparent;
+  background: var(--surface-2);
   color: var(--text);
-  box-shadow: inset 0 0 0 3px var(--border);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
 }
 .btn--ghost:hover,
 .btn--ghost:focus-visible {
-  background: var(--surface-2);
   color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--text-2);
+  background: var(--surface-2);
 }
+.btn__icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+}
+
+/* ---------- chips ---------- */
 .chip {
-  display: inline-block;
-  font-family: var(--font-pixel);
-  font-size: 0.55rem;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 500;
   line-height: 1;
-  padding: 0.6em 0.8em;
-  background: var(--bg-2);
-  color: var(--muted);
-  box-shadow: inset 0 0 0 2px var(--border);
+  padding: 0.5em 0.8em;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
 }
 .pixelated {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
 
-/* ---------- CRT overlay (static scanlines) ---------- */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background: repeating-linear-gradient(0deg, var(--scanline) 0 1px, transparent 1px 3px);
-}
+/* ---------- reveal ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  body::after {
-    animation: crt-flicker 6s steps(4) infinite;
+  .reveal {
+    animation: reveal 700ms var(--ease) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
   }
-  @keyframes crt-flicker {
-    0%,
-    100% {
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
       opacity: 1;
-    }
-    50% {
-      opacity: 0.85;
+      transform: none;
     }
   }
-}
-html[data-crt='off'] body::after {
-  display: none;
 }
 
 /* ---------- motion ---------- */
@@ -218,7 +250,7 @@ html[data-crt='off'] body::after {
 
 /* ---------- print ---------- */
 @media print {
-  body::after,
+  body::before,
   .ad,
   .theme-toggle {
     display: none !important;

@@ -2,27 +2,41 @@
 import { Image } from 'astro:assets';
 import type { Game } from '../lib/games';
 import StatusBadge from './StatusBadge.astro';
+import SupportBadges from './SupportBadges.astro';
 import { withBase } from '../lib/url';
 
 interface Props {
   game: Game;
+  /** Wide, hero-style layout for the first/featured entry. */
+  featured?: boolean;
 }
-const { game } = Astro.props;
-const { title, genre, blurb, status, playUrl, cover, logo, pixelArt } = game.data;
+const { game, featured = false } = Astro.props;
+const { title, genre, blurb, status, playUrl, cover, logo, pixelArt, tech } = game.data;
 const href = withBase(`/games/${game.id}/`);
+const imgW = featured ? 1280 : 720;
+const imgH = featured ? 720 : 405;
 ---
 
-<article class="card pixel-box">
+<article class:list={['card', { 'card--featured': featured }]}>
   <div class="card__media">
     {
       cover ? (
-        <Image src={cover} alt="" width={640} height={360} class:list={['card__cover', { pixelated: pixelArt }]} loading="lazy" />
+        <Image
+          src={cover}
+          alt=""
+          width={imgW}
+          height={imgH}
+          class:list={['card__cover', { pixelated: pixelArt }]}
+          loading={featured ? 'eager' : 'lazy'}
+        />
       ) : logo ? (
         <div class="card__logo-wrap">
-          <Image src={logo} alt="" width={160} height={160} class="card__logo" loading="lazy" />
+          <Image src={logo} alt="" width={240} height={240} class="card__logo" loading="lazy" />
         </div>
       ) : (
-        <div class="card__placeholder pixel" aria-hidden="true">{title}</div>
+        <div class="card__placeholder display" aria-hidden="true">
+          {title}
+        </div>
       )
     }
     <span class="card__status">
@@ -30,14 +44,27 @@ const href = withBase(`/games/${game.id}/`);
     </span>
   </div>
   <div class="card__body">
-    <p class="card__genre label muted">{genre}</p>
+    <p class="card__genre label">{genre}</p>
     <h2 class="card__title">
       <a class="card__link" href={href}>{title}</a>
     </h2>
     <p class="card__blurb">{blurb}</p>
+    <SupportBadges game={game} />
+    {
+      featured && (
+        <ul class="card__tech" aria-label="Built with">
+          {tech.map((t) => (
+            <li class="chip">{t}</li>
+          ))}
+        </ul>
+      )
+    }
     <div class="card__actions">
-      <a class="btn card__play" href={playUrl} target="_blank" rel="noopener">Play ▶</a>
-      <span class="card__more label muted" aria-hidden="true">Details &gt;&gt;</span>
+      <a class="btn card__play" href={playUrl} target="_blank" rel="noopener">
+        <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+        Play
+      </a>
+      <span class="card__more" aria-hidden="true">Details <span class="card__arrow">→</span></span>
     </div>
   </div>
 </article>
@@ -48,28 +75,69 @@ const href = withBase(`/games/${game.id}/`);
     display: flex;
     flex-direction: column;
     height: 100%;
-    transition: transform var(--step) steps(2), box-shadow var(--step) steps(2);
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-1);
+    backdrop-filter: blur(18px) saturate(1.3);
+    -webkit-backdrop-filter: blur(18px) saturate(1.3);
+    transition:
+      transform var(--slow) var(--ease),
+      box-shadow var(--slow) var(--ease),
+      border-color var(--slow) var(--ease);
+  }
+  .card::after {
+    /* gradient edge highlight on hover */
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--gradient);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--slow) var(--ease);
   }
   .card:hover,
   .card:focus-within {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0 var(--accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-2), 0 0 60px -20px var(--glow);
+  }
+  .card:hover::after,
+  .card:focus-within::after {
+    opacity: 1;
   }
   .card__media {
     position: relative;
     aspect-ratio: 16 / 9;
     background: var(--bg-2);
-    border-bottom: var(--px) solid var(--border);
     overflow: hidden;
+  }
+  .card__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--surface-solid) 0%, transparent 45%);
+    opacity: 0.6;
+    pointer-events: none;
   }
   .card__cover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: filter var(--step) steps(2);
+    transition: transform 900ms var(--ease);
   }
   .card:hover .card__cover {
-    filter: brightness(1.08);
+    transform: scale(1.04);
   }
   .card__logo-wrap {
     display: grid;
@@ -77,39 +145,47 @@ const href = withBase(`/games/${game.id}/`);
     width: 100%;
     height: 100%;
     background:
-      radial-gradient(circle at 50% 60%, var(--glow), transparent 60%),
-      repeating-linear-gradient(90deg, transparent 0 15px, var(--border) 15px 16px),
-      repeating-linear-gradient(0deg, transparent 0 15px, var(--border) 15px 16px);
+      radial-gradient(circle at 50% 55%, var(--glow), transparent 55%),
+      radial-gradient(circle at 80% 20%, var(--glow-2), transparent 50%),
+      var(--bg-2);
   }
   .card__logo {
-    width: 45%;
+    width: 40%;
     height: auto;
+    filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.45));
+    transition: transform 900ms var(--ease);
+  }
+  .card:hover .card__logo {
+    transform: scale(1.05) translateY(-2px);
   }
   .card__placeholder {
     display: grid;
     place-items: center;
     height: 100%;
-    font-size: 0.8rem;
-    color: var(--accent);
+    font-size: 1.4rem;
+    color: var(--muted);
   }
   .card__status {
     position: absolute;
-    top: var(--space-2);
-    left: var(--space-2);
+    top: var(--space-3);
+    left: var(--space-3);
+    z-index: 1;
   }
   .card__body {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    padding: var(--space-3);
+    padding: var(--space-4);
     flex: 1;
   }
   .card__genre {
     margin: 0;
+    color: var(--accent-2);
   }
   .card__title {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 1.5rem;
+    letter-spacing: -0.025em;
   }
   .card__link {
     color: var(--text);
@@ -120,28 +196,87 @@ const href = withBase(`/games/${game.id}/`);
     content: '';
     position: absolute;
     inset: 0;
-  }
-  .card:hover .card__link {
-    color: var(--accent);
+    z-index: 1;
   }
   .card__blurb {
     margin: 0;
-    color: var(--muted);
-    font-size: 0.95rem;
+    color: var(--text-2);
+    font-size: 0.98rem;
     flex: 1;
+  }
+  .card__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-top: var(--space-1);
   }
   .card__actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-2);
-    margin-top: var(--space-2);
+    margin-top: var(--space-3);
   }
   .card__play {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
   .card__more {
-    margin: 0;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color var(--fast) var(--ease);
+  }
+  .card__arrow {
+    display: inline-block;
+    transition: transform var(--fast) var(--ease);
+  }
+  .card:hover .card__more {
+    color: var(--text);
+  }
+  .card:hover .card__arrow {
+    transform: translateX(3px);
+  }
+
+  /* ---- featured ---- */
+  .card--featured {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+  .card--featured .card__media {
+    aspect-ratio: auto;
+    min-height: 22rem;
+    height: 100%;
+  }
+  .card--featured .card__media::after {
+    background: linear-gradient(to right, transparent 55%, var(--surface-solid) 100%);
+    opacity: 0.75;
+  }
+  .card--featured .card__body {
+    justify-content: center;
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+  .card--featured .card__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.035em;
+  }
+  .card--featured .card__blurb {
+    font-size: 1.1rem;
+    flex: 0;
+  }
+  @media (max-width: 760px) {
+    .card--featured {
+      grid-template-columns: 1fr;
+    }
+    .card--featured .card__media {
+      aspect-ratio: 16 / 9;
+      min-height: 0;
+    }
+    .card--featured .card__media::after {
+      background: linear-gradient(to top, var(--surface-solid) 0%, transparent 45%);
+      opacity: 0.6;
+    }
   }
 </style>
