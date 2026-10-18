@@ -34,7 +34,7 @@ hand-written fields freely; never edit `sync:` by hand.
   on a grid background instead.
 - Image paths are relative to the YAML file, e.g. `../assets/games/<id>/shot.png`.
 - Optional `video: {src: /videos/<id>/gameplay.mp4, label: Gameplay description}`
-  adds a muted, looping autoplay video with controls below the details hero.
+  replaces the details hero image with a muted, looping autoplay video with controls.
   Store MP4 files in `public/videos/<id>/`; the cover serves as the video poster.
 - `controls` lists the supported inputs: `keyboard-mouse`, `keyboard` (no mouse
   needed), `gamepad` and `touch`. `devices` lists `desktop`, `tablet` and
