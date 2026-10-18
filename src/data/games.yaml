@@ -26,7 +26,7 @@
 
     It runs entirely in the browser, installs as a progressive web app and
     saves locally, so you can pick it up where you left off.
-  playUrl: https://erikhellman.github.io/Fimbulvetr/
+  playUrl: https://fimbulvetr.hellman.cloud/
   repo: {owner: ErikHellman, name: Fimbulvetr}
   tech: [Phaser 4, TypeScript, Vite, PWA]
   tags: [adventure, zelda-like, norse, pixel-art, singleplayer]
@@ -50,7 +50,7 @@
   title: Fantasy Sim World
   order: 20
   listed: true
-  status: playable
+  status: released
   genre: AI-driven life simulation
   blurb: A 3D fantasy village where a dozen AI villagers live, gossip, marry and fight. Everyone who opens the page watches the same village.
   description: |
@@ -67,7 +67,7 @@
 
     You do not control anyone. You watch, and everyone who opens the page sees
     the same village at the same moment.
-  playUrl: https://fantasy-sim-world.fly.dev/
+  playUrl: http://fantasy-sim-world.hellsoft.se/
   repo: {owner: ErikHellman, name: FantasySimWorld}
   tech: [three.js, Preact, Rust, Fly.io]
   tags: [simulation, ai, 3d, spectator, multiplayer]
@@ -93,7 +93,7 @@
   title: DungeonCrawl
   order: 30
   listed: true
-  status: playable
+  status: released
   genre: First-person roguelite
   blurb: A real-time first-person dungeon crawler. Reach the exit before the clock runs out, twenty levels down to the Necromancer King.
   description: |
@@ -128,7 +128,7 @@
   title: Bilstöld
   order: 40
   listed: true
-  status: playable
+  status: released
   genre: Top-down open-world action
   blurb: GTA1-style car theft in a procedurally generated city. Steal cars, take payphone missions and play three gangs against each other.
   description: |
@@ -145,7 +145,7 @@
 
     Every sprite, sound and font is generated in code. There are no asset
     files and no runtime dependencies. The game autosaves in your browser.
-  playUrl: https://erikhellman.github.io/bilstold/
+  playUrl: https://bilstold.hellman.cloud/
   repo: {owner: ErikHellman, name: bilstold}
   tech: [TypeScript, Canvas 2D, Vite]
   tags: [open-world, driving, procedural, pixel-art, singleplayer]
