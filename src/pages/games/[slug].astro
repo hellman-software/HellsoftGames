@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import StatusBadge from '../../components/StatusBadge.astro';
 import AdSlot from '../../components/AdSlot.astro';
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const { game } = Astro.props;
-const { title, genre, blurb, description, status, playUrl, tech, tags, cover, logo, screenshots, pixelArt, sync } =
+const { title, genre, blurb, description, status, playUrl, tech, tags, cover, logo, video, screenshots, pixelArt, sync } =
   game.data;
 const repo = repoUrl(game);
 const release = sync?.release ?? null;
@@ -23,6 +23,7 @@ const updated = formatDate(sync?.pushedAt);
 const body = paragraphs(description || sync?.description || '');
 const hero = cover ?? screenshots[0]?.src ?? null;
 const gallery = screenshots.filter((s) => s.src !== hero);
+const poster = video && hero ? await getImage({ src: hero, width: 1280, height: 720 }) : null;
 const support = [
   { label: 'Controls', items: controlsOf(game) },
   { label: 'Devices', items: devicesOf(game) },
@@ -75,6 +76,26 @@ const support = [
         </div>
       </div>
     </div>
+
+    {video && (
+      <div class="game__video reveal">
+        <video
+          class:list={{ pixelated: pixelArt }}
+          aria-label={video.label}
+          poster={poster?.src}
+          width="1280"
+          height="720"
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+        >
+          <source src={withBase(video.src)} type="video/mp4" />
+          <a href={withBase(video.src)}>Watch {title} gameplay</a>
+        </video>
+      </div>
+    )}
 
     <div class="game__layout">
       <section class="game__about reveal" style="--i: 1" aria-labelledby="about-heading">
@@ -311,6 +332,18 @@ const support = [
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
+  }
+  .game__video {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-5);
+    background: var(--bg-2);
+  }
+  .game__video video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
   .game__layout {
     display: grid;

@@ -27,6 +27,7 @@ const games = defineCollection({
       pixelArt: z.boolean().default(false),
       cover: image().optional(),
       logo: image().optional(),
+      video: z.object({ src: z.string().startsWith('/'), label: z.string() }).optional(),
       screenshots: z.array(z.object({ src: image(), alt: z.string() })).default([]),
       // Supported inputs and devices; `note` is the hover text. A device left out is shown as unsupported.
       controls: z.array(z.object({ type: z.enum(CONTROLS), note: z.string().optional() })).default([]),
