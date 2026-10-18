@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import StatusBadge from '../../components/StatusBadge.astro';
 import AdSlot from '../../components/AdSlot.astro';
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const { game } = Astro.props;
-const { title, genre, blurb, description, status, playUrl, tech, tags, cover, logo, screenshots, pixelArt, sync } =
+const { title, genre, blurb, description, status, playUrl, tech, tags, cover, logo, video, screenshots, pixelArt, sync } =
   game.data;
 const repo = repoUrl(game);
 const release = sync?.release ?? null;
@@ -21,6 +21,7 @@ const updated = formatDate(sync?.pushedAt);
 const body = paragraphs(description || sync?.description || '');
 const hero = cover ?? screenshots[0]?.src ?? null;
 const gallery = screenshots.filter((s) => s.src !== hero);
+const poster = video && hero ? await getImage({ src: hero, width: 1280, height: 720 }) : null;
 ---
 
 <Base title={title} description={blurb} image={hero ? hero.src : undefined}>
@@ -48,7 +49,23 @@ const gallery = screenshots.filter((s) => s.src !== hero);
 
     <div class="game__hero pixel-box">
       {
-        hero ? (
+        video ? (
+          <video
+            class:list={['game__hero-img', { pixelated: pixelArt }]}
+            aria-label={video.label}
+            poster={poster?.src}
+            width="1280"
+            height="720"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+          >
+            <source src={withBase(video.src)} type="video/mp4" />
+            <a href={withBase(video.src)}>Watch {title} gameplay</a>
+          </video>
+        ) : hero ? (
           <Image src={hero} alt={screenshots[0]?.alt ?? `${title} screenshot`} width={1280} height={720} class:list={['game__hero-img', { pixelated: pixelArt }]} loading="eager" />
         ) : logo ? (
           <div class="game__logo-wrap">

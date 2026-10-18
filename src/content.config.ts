@@ -25,6 +25,7 @@ const games = defineCollection({
       pixelArt: z.boolean().default(false),
       cover: image().optional(),
       logo: image().optional(),
+      video: z.object({ src: z.string().startsWith('/'), label: z.string() }).optional(),
       screenshots: z.array(z.object({ src: image(), alt: z.string() })).default([]),
       // --- owned by scripts/sync-games.mjs ---
       sync: z

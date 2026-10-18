@@ -150,9 +150,15 @@
   tech: [TypeScript, Canvas 2D, Vite]
   tags: [open-world, driving, procedural, pixel-art, singleplayer]
   pixelArt: true
-  cover: ../assets/games/bilstold/screenshot.png
+  cover: ../assets/games/bilstold/title.png
+  video:
+    src: /videos/bilstold/gameplay.mp4
+    label: Bilstöld gameplay — driving and action in a top-down city
   screenshots:
-    - {src: ../assets/games/bilstold/screenshot.png, alt: A yellow car driving down a city street, seen from above}
+    - {src: ../assets/games/bilstold/title.png, alt: Bilstöld title screen over a top-down city intersection}
+    - {src: ../assets/games/bilstold/police-chase.png, alt: A police car chasing vehicles through a busy city intersection}
+    - {src: ../assets/games/bilstold/bruksorten-winter.png, alt: Driving through snow-covered streets in Bruksorten}
+    - {src: ../assets/games/bilstold/huvudstaden-night.png, alt: Cars and an explosion at a nighttime intersection in Huvudstaden}
   sync:
     isPrivate: false
     description: Bilstöld — a GTA1/GTA2-style top-down car-theft game for the browser, with seeded procedural cities

@@ -33,6 +33,9 @@ hand-written fields freely; never edit `sync:` by hand.
 - `cover` is the card image (16:9 works best). Without a cover, `logo` is shown
   on a grid background instead.
 - Image paths are relative to the YAML file, e.g. `../assets/games/<id>/shot.png`.
+- Optional `video: {src: /videos/<id>/gameplay.mp4, label: Gameplay description}`
+  replaces the details hero with a muted, looping autoplay video with controls.
+  Store MP4 files in `public/videos/<id>/`; the cover serves as the video poster.
 
 The schema is enforced at build time by [`src/content.config.ts`](src/content.config.ts),
 so a typo in a field name or a missing image fails `npm run build` rather than
