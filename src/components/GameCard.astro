@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { Game } from '../lib/games';
 import StatusBadge from './StatusBadge.astro';
 import SupportBadges from './SupportBadges.astro';
+import SourceBadge from './SourceBadge.astro';
 import { withBase } from '../lib/url';
 
 interface Props {
@@ -49,6 +50,7 @@ const imgH = featured ? 720 : 405;
       <a class="card__link" href={href}>{title}</a>
     </h2>
     <p class="card__blurb">{blurb}</p>
+    <SourceBadge game={game} />
     <SupportBadges game={game} />
     {
       featured && (

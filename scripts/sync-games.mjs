@@ -14,6 +14,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
+import spdxLicenses from 'spdx-license-list';
 
 export const DATA_FILE = new URL('../src/data/games.yaml', import.meta.url);
 
@@ -59,9 +60,32 @@ export function pickRelease({ release, tags, pkgVersion }) {
   return null;
 }
 
+/** Keep visibility separate from licensing: public source is not necessarily open source. */
+export function pickLicense(license, url = null) {
+  if (!license) return null;
+  const spdxId = license.spdx_id && license.spdx_id !== 'NOASSERTION' ? license.spdx_id : null;
+  return {
+    spdxId,
+    name: spdxId ? license.name : 'Other license',
+    url,
+    osiApproved: spdxId ? spdxLicenses[spdxId]?.osiApproved === true : false,
+  };
+}
+
 /** Fetch everything the sync block needs for one repo. */
 export function fetchRepoState(owner, name, api = ghApi) {
   const repo = api(`repos/${owner}/${name}`);
+
+  let license = null;
+  if (repo.license) {
+    try {
+      const file = api(`repos/${owner}/${name}/license`);
+      license = pickLicense(file.license, file.html_url ?? null);
+    } catch (err) {
+      if (!notFound(err)) throw err;
+      license = pickLicense(repo.license);
+    }
+  }
 
   let release = null;
   try {
@@ -88,6 +112,7 @@ export function fetchRepoState(owner, name, api = ghApi) {
 
   return {
     isPrivate: Boolean(repo.private),
+    license,
     description: repo.description ?? null,
     pushedAt: repo.pushed_at ?? null,
     release: pickRelease({ release, tags, pkgVersion }),
@@ -103,6 +128,7 @@ export function mergeSync(doc, id, sync) {
   const previous = item.has('sync') ? item.get('sync', true).toJSON() : null;
   const ordered = {
     isPrivate: sync.isPrivate,
+    license: sync.license,
     description: sync.description,
     pushedAt: sync.pushedAt,
     release: sync.release
