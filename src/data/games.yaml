@@ -27,6 +27,7 @@
     It runs entirely in the browser, installs as a progressive web app and
     saves locally, so you can pick it up where you left off.
   playUrl: https://fimbulvetr.hellman.cloud/
+  browserPlayable: true
   repo: {owner: ErikHellman, name: Fimbulvetr}
   tech: [Phaser 4, TypeScript, Vite, PWA]
   tags: [adventure, zelda-like, norse, pixel-art, singleplayer]
@@ -76,6 +77,7 @@
     You do not control anyone. You watch, and everyone who opens the page sees
     the same village at the same moment.
   playUrl: http://fantasy-sim-world.hellsoft.se/
+  browserPlayable: true
   repo: {owner: ErikHellman, name: FantasySimWorld}
   tech: [three.js, Preact, Rust, Fly.io]
   tags: [simulation, ai, 3d, spectator, multiplayer]
@@ -125,6 +127,7 @@
     with keyboard and mouse or a gamepad on a desktop browser. Tablets work
     with a controller or keyboard. Phones are not supported.
   playUrl: https://erikhellman.github.io/DungeonCrawl/
+  browserPlayable: true
   repo: {owner: ErikHellman, name: DungeonCrawl}
   tech: [Babylon.js 8, WebGPU, TypeScript, Vite]
   tags: [roguelite, dungeon-crawler, first-person, 3d, singleplayer]
@@ -167,6 +170,7 @@
     Every sprite, sound and font is generated in code. There are no asset
     files and no runtime dependencies. The game autosaves in your browser.
   playUrl: https://bilstold.hellman.cloud/
+  browserPlayable: true
   repo: {owner: ErikHellman, name: bilstold}
   tech: [TypeScript, Canvas 2D, Vite]
   tags: [open-world, driving, procedural, pixel-art, singleplayer]
@@ -220,6 +224,7 @@
     the music is synthesised in the browser. The game is in playtesting, so
     expect rough edges.
   playUrl: https://fightworld.fly.dev/
+  browserPlayable: true
   repo: {owner: ErikHellman, name: FightWorld}
   tech: [three.js, Rust, axum, Postgres, Fly.io]
   tags: [action-rpg, multiplayer, pvp, 3d]
@@ -265,6 +270,7 @@
     available and falls back to WebGL2. This is a playable development build,
     so expect rough edges while playtesting continues.
   playUrl: https://micromayhem.fly.dev/
+  browserPlayable: true
   repo: {owner: ErikHellman, name: MicroMayhem}
   tech: [Babylon.js 8, WebGPU, TypeScript, Rust, WebAssembly, WebRTC, Fly.io]
   tags: [racing, kart-racing, multiplayer, 3d, singleplayer]
@@ -312,6 +318,7 @@
     WebGPU where available and falls back to WebGL2, with keyboard and mouse
     or a gamepad. Early days: weather and NPCs are still to come.
   playUrl: https://erikhellman.github.io/Parkour/
+  browserPlayable: true
   repo: {owner: ErikHellman, name: Parkour}
   tech: [three.js, WebGPU, Rapier, TypeScript]
   tags: [parkour, 3d, prototype, singleplayer]
@@ -347,6 +354,7 @@
     elliptical track with hills. Ram them, watch your 10 HP, and switch between
     a driver camera and an overview camera.
   playUrl: https://erikhellman.github.io/hellcart-race/
+  browserPlayable: true
   repo: {owner: ErikHellman, name: hellcart-race}
   tech: [React, Three.js, React Three Fiber, TypeScript]
   tags: [racing, 3d, prototype]

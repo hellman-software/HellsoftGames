@@ -21,6 +21,7 @@ const games = defineCollection({
       blurb: z.string().max(160),
       description: z.string(),
       playUrl: z.string().url(),
+      browserPlayable: z.boolean(),
       repo: z.object({ owner: z.string(), name: z.string() }),
       tech: z.array(z.string()),
       tags: z.array(z.string()).default([]),

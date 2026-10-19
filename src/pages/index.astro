@@ -11,51 +11,33 @@ const AD_AFTER = 3;
 
 <Base
   title="Hellsoft Games"
-  description="Browser games by Erik Hellman (Hellsoft): action-adventures, dungeon crawlers, car-theft sandboxes and AI-driven worlds. Play them free in your browser."
+  description="Games by Erik Hellman (Hellsoft): action-adventures, dungeon crawlers, car-theft sandboxes and AI-driven worlds. Explore the games and find your next favourite."
 >
-  <section class="hero">
-    <p class="hero__kicker label reveal" style="--i: 0">
-      <span class="hero__pulse" aria-hidden="true"></span>
-      {games.length} games · all playable in your browser
-    </p>
-    <h1 class="hero__title reveal" style="--i: 1">
-      One click in.<br />
-      <span class="gradient-text">Hours deep.</span>
-    </h1>
-    <p class="hero__tagline reveal" style="--i: 2">
-      No installs, no sign-ups (unless a game needs one). From kart races to dungeon dives, pick one and play.
-    </p>
-    <div class="hero__actions reveal" style="--i: 3">
-      <a class="btn" href="#games">
-        <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
-        Browse games
-      </a>
-      <a class="btn btn--ghost" href="https://github.com/ErikHellman" rel="noopener">GitHub</a>
-    </div>
-  </section>
-
-  <AdSlot id="home-leaderboard" size="leaderboard" class="home-ad" />
-
   <section id="games" aria-labelledby="games-heading" class="catalogue">
-    <h2 id="games-heading" class="visually-hidden">All games</h2>
+    <header class="catalogue__header">
+      <h1 id="games-heading" class="catalogue__title">Games</h1>
+      <p class="catalogue__count">{games.length} games to explore</p>
+    </header>
 
     {
       featured && (
-        <div class="featured reveal" style="--i: 4">
+        <div class="featured">
           <GameCard game={featured} featured />
         </div>
       )
     }
 
+    <AdSlot id="home-leaderboard" size="leaderboard" class="home-ad" />
+
     <ul class="grid">
       {
         rest.map((game, i) => (
           <>
-            <li class="reveal" style={`--i: ${5 + i}`}>
+            <li class="reveal" style={`--i: ${i}`}>
               <GameCard game={game} />
             </li>
             {i + 1 === AD_AFTER && (
-              <li class="grid__ad reveal" style={`--i: ${6 + i}`}>
+              <li class="grid__ad reveal" style={`--i: ${i + 1}`}>
                 <AdSlot id="home-feed-1" size="card" />
               </li>
             )}
@@ -67,50 +49,26 @@ const AD_AFTER = 3;
 </Base>
 
 <style>
-  .hero {
-    padding-block: clamp(3rem, 9vw, 7rem) clamp(2rem, 5vw, 3.5rem);
-    max-width: 52rem;
+  .catalogue {
+    scroll-margin-top: calc(var(--header-h) + var(--space-3));
   }
-  .hero__kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6em;
-    color: var(--text-2);
-    margin: 0 0 var(--space-4);
-    padding: 0.5em 0.9em 0.5em 0.7em;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-pill);
-    background: var(--surface);
-  }
-  .hero__pulse {
-    width: 0.55em;
-    height: 0.55em;
-    border-radius: 50%;
-    background: var(--lime);
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--lime) 55%, transparent);
-    animation: pulse 2.2s var(--ease) infinite;
-  }
-  @keyframes pulse {
-    70% {
-      box-shadow: 0 0 0 8px transparent;
-    }
-    100% {
-      box-shadow: 0 0 0 0 transparent;
-    }
-  }
-  .hero__title {
-    margin-bottom: var(--space-4);
-  }
-  .hero__tagline {
-    max-width: 36rem;
-    color: var(--text-2);
-    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-    margin-bottom: var(--space-4);
-  }
-  .hero__actions {
+  .catalogue__header {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+  .catalogue__title {
+    margin: 0;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    letter-spacing: -0.025em;
+  }
+  .catalogue__count {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.85rem;
   }
   .home-ad {
     margin-block: 0 var(--space-5);

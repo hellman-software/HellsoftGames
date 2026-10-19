@@ -1,0 +1,8 @@
+---
+interface Props {
+  browserPlayable: boolean;
+}
+const { browserPlayable } = Astro.props;
+---
+
+<span class="chip">{browserPlayable ? 'Plays in browser' : 'Requires installation'}</span>
