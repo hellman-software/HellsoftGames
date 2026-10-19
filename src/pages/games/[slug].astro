@@ -150,18 +150,16 @@ const support = [
               </div>
             )
           }
-          <div class="facts__row">
-            <dt class="label">Source availability</dt>
-            <dd>{licensing.status}</dd>
-          </div>
-          <div class="facts__row">
-            <dt class="label">License</dt>
-            <dd>
-              {licensing.licenseUrl ? (
-                <a href={licensing.licenseUrl} target="_blank" rel="noopener">{licensing.licenseLabel}</a>
-              ) : licensing.licenseLabel}
-            </dd>
-          </div>
+          {licensing && (
+            <div class="facts__row">
+              <dt class="label">License</dt>
+              <dd>
+                {licensing.licenseUrl ? (
+                  <a href={licensing.licenseUrl} target="_blank" rel="noopener">{licensing.licenseLabel}</a>
+                ) : licensing.licenseLabel}
+              </dd>
+            </div>
+          )}
           <div class="facts__row">
             <dt class="label">Browser play</dt>
             <dd>{browserPlayable ? 'Available on supported devices' : 'Not available — installation required'}</dd>

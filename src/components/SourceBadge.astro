@@ -1,18 +1,21 @@
 ---
-import type { Game } from '../lib/games';
+import { repoUrl, type Game } from '../lib/games';
 import { licensingOf } from '../lib/licensing.mjs';
 
 interface Props {
   game: Game;
 }
 const { game } = Astro.props;
-const { status, licenseLabel } = licensingOf(game.data.sync);
+const licensing = licensingOf(game.data.sync);
+const source = repoUrl(game);
 ---
 
-<p class="source-info" aria-label="Source and license">
-  <span class="chip">{status}</span>
-  <span class="source-info__license">License: {licenseLabel}</span>
-</p>
+{licensing && source && (
+  <p class="source-info" aria-label="Source and license">
+    <a class="chip source-info__link" href={source} target="_blank" rel="noopener">Source</a>
+    <span class="source-info__license">License: {licensing.licenseLabel}</span>
+  </p>
+)}
 
 <style>
   .source-info {
@@ -22,6 +25,10 @@ const { status, licenseLabel } = licensingOf(game.data.sync);
     gap: var(--space-2);
     margin: var(--space-1) 0 0;
     font-size: 0.85rem;
+  }
+  .source-info__link {
+    position: relative;
+    z-index: 2;
   }
   .source-info__license {
     color: var(--muted);
