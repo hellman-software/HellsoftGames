@@ -31,8 +31,11 @@
   tech: [Phaser 4, TypeScript, Vite, PWA]
   tags: [adventure, zelda-like, norse, pixel-art, singleplayer]
   pixelArt: true
-  cover: ../assets/games/fimbulvetr/screenshot.png
+  cover: ../assets/games/fimbulvetr/myrkvidr-forest.png
   logo: ../assets/games/fimbulvetr/icon.png
+  video:
+    src: /videos/fimbulvetr/trailer.mp4
+    label: Fimbulvetr trailer — a journey through its Norse world from Askdalr to Hrímfjöll
   screenshots:
     - {src: ../assets/games/fimbulvetr/screenshot.png, alt: Ask exploring a snowy village in Fimbulvetr}
   controls:
