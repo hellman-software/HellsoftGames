@@ -37,6 +37,13 @@ const games = defineCollection({
       sync: z
         .object({
           isPrivate: z.boolean(),
+          // Optional for older snapshots; null means GitHub detected no license.
+          license: z.object({
+            spdxId: z.string().nullable(),
+            name: z.string(),
+            url: z.string().url().nullable(),
+            osiApproved: z.boolean(),
+          }).nullable().optional(),
           description: z.string().nullable(),
           pushedAt: isoDate.nullable(),
           release: z

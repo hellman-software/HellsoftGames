@@ -68,10 +68,19 @@ npm run sync -- --only fimbulvetr
 ```
 
 The script uses the `gh` CLI (which must be logged in with access to the
-private repos) to refresh repo visibility, description, last push date and the
-latest version. The version comes from the latest GitHub release, falling back
+private repos) to refresh repo visibility, license metadata, description, last push
+date and the latest version. The version comes from the latest GitHub release, falling back
 to the newest tag, then to `version` in the repo's `package.json`. The repo
 link on a game page is only shown when the repo is public.
+
+Cards and details show source availability and the detected license. A public
+repository is labelled “Open source” only when its detected SPDX license is
+OSI-approved (using `spdx-license-list`); other public repositories are labelled
+“Source available”. Private repositories are labelled “Closed source”, even if
+licensed. “No license detected” means GitHub returned no license; “License unknown”
+means the snapshot has not recorded licensing yet. Custom/unrecognised licenses
+are shown as “Other license”. Details link to the repository's license file only
+when the repository is public. Keep `spdx-license-list` updated as SPDX adds licenses.
 
 The sync is a manual step. Run it, review `git diff`, commit.
 

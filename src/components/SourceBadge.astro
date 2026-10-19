@@ -1,0 +1,30 @@
+---
+import type { Game } from '../lib/games';
+import { licensingOf } from '../lib/licensing.mjs';
+
+interface Props {
+  game: Game;
+}
+const { game } = Astro.props;
+const { status, licenseLabel } = licensingOf(game.data.sync);
+---
+
+<p class="source-info" aria-label="Source and license">
+  <span class="chip">{status}</span>
+  <span class="source-info__license">License: {licenseLabel}</span>
+</p>
+
+<style>
+  .source-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin: var(--space-1) 0 0;
+    font-size: 0.85rem;
+  }
+  .source-info__license {
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+</style>
