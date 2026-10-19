@@ -27,7 +27,9 @@ const AD_AFTER = 3;
       )
     }
 
-    <AdSlot id="home-leaderboard" size="leaderboard" class="home-ad" />
+    <div class="home-ad">
+      <AdSlot id="home-leaderboard" size="leaderboard" />
+    </div>
 
     <ul class="grid">
       {
@@ -71,10 +73,7 @@ const AD_AFTER = 3;
     font-size: 0.85rem;
   }
   .home-ad {
-    margin-block: 0 var(--space-5);
-  }
-  .featured {
-    margin-bottom: var(--space-4);
+    padding-block: clamp(var(--space-4), 4vw, var(--space-5));
   }
   .grid {
     display: grid;
