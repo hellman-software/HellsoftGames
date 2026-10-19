@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { licensingOf } from './licensing.mjs';
 
 export type Game = CollectionEntry<'games'>;
 
@@ -32,6 +33,6 @@ export function paragraphs(text: string): string[] {
 }
 
 export function repoUrl(game: Game): string | null {
-  if (game.data.sync?.isPrivate !== false) return null;
+  if (!licensingOf(game.data.sync)) return null;
   return `https://github.com/${game.data.repo.owner}/${game.data.repo.name}`;
 }
