@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import StatusBadge from '../../components/StatusBadge.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import SupportIcon from '../../components/SupportIcon.astro';
+import BrowserBadge from '../../components/BrowserBadge.astro';
 import { getListedGames, formatDate, paragraphs, repoUrl } from '../../lib/games';
 import { controlsOf, devicesOf } from '../../lib/support';
 import { withBase } from '../../lib/url';
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { game } = Astro.props;
-const { title, genre, blurb, description, status, playUrl, tech, tags, cover, logo, video, screenshots, pixelArt, sync } =
+const { title, genre, blurb, description, status, playUrl, browserPlayable, tech, tags, cover, logo, video, screenshots, pixelArt, sync } =
   game.data;
 const repo = repoUrl(game);
 const release = sync?.release ?? null;
@@ -73,6 +74,7 @@ const support = [
         </nav>
         <div class="game__meta">
           <StatusBadge status={status} />
+          <BrowserBadge browserPlayable={browserPlayable} />
           <span class="label game__genre">{genre}</span>
         </div>
         <h1 class="game__title">{title}</h1>
@@ -80,7 +82,7 @@ const support = [
         <div class="game__actions">
           <a class="btn" href={playUrl} target="_blank" rel="noopener">
             <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
-            Play now
+            {browserPlayable ? 'Play now' : 'Get game'}
           </a>
           {
             repo && (
@@ -147,8 +149,8 @@ const support = [
             )
           }
           <div class="facts__row">
-            <dt class="label">Platform</dt>
-            <dd>Web browser</dd>
+            <dt class="label">Browser play</dt>
+            <dd>{browserPlayable ? 'Available on supported devices' : 'Not available — installation required'}</dd>
           </div>
           {support.map((group) => (
             <div class="facts__row">
@@ -209,7 +211,7 @@ const support = [
         </dl>
         <a class="btn facts__play" href={playUrl} target="_blank" rel="noopener">
           <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
-          Play now
+          {browserPlayable ? 'Play now' : 'Get game'}
         </a>
       </aside>
     </div>

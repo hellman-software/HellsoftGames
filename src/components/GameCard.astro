@@ -62,7 +62,7 @@ const imgH = featured ? 720 : 405;
     <div class="card__actions">
       <a class="btn card__play" href={playUrl} target="_blank" rel="noopener">
         <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
-        Play
+        {game.data.browserPlayable ? 'Play' : 'Get game'}
       </a>
       <span class="card__more" aria-hidden="true">Details <span class="card__arrow">→</span></span>
     </div>

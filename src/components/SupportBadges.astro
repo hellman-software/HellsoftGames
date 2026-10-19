@@ -2,6 +2,7 @@
 import type { Game } from '../lib/games';
 import { controlsOf, devicesOf, type SupportEntry } from '../lib/support';
 import SupportIcon from './SupportIcon.astro';
+import BrowserBadge from './BrowserBadge.astro';
 
 interface Props {
   game: Game;
@@ -14,32 +15,29 @@ const groups: { label: string; items: SupportEntry[] }[] = [
 const tipId = (type: string) => `support-${game.id}-${type}`;
 ---
 
-{
-  groups.length > 0 && (
-    <div class="support">
-      {groups.map((group) => (
-        <ul class="support__group" aria-label={group.label}>
-          {group.items.map((item) => (
-            <li>
-              <span
-                class:list={['support__item', { 'support__item--off': !item.supported }]}
-                tabindex="0"
-                role="img"
-                aria-labelledby={tipId(item.type)}
-              >
-                <SupportIcon type={item.type} crossed={!item.supported} size="1.15rem" />
-                <span class="support__tip" id={tipId(item.type)} role="tooltip">
-                  <strong class="support__tip-title">{item.label}</strong>
-                  {item.note && <span class="support__tip-note">{item.note}</span>}
-                </span>
-              </span>
-            </li>
-          ))}
-        </ul>
+<div class="support">
+  <BrowserBadge browserPlayable={game.data.browserPlayable} />
+  {groups.map((group) => (
+    <ul class="support__group" aria-label={group.label}>
+      {group.items.map((item) => (
+        <li>
+          <span
+            class:list={['support__item', { 'support__item--off': !item.supported }]}
+            tabindex="0"
+            role="img"
+            aria-labelledby={tipId(item.type)}
+          >
+            <SupportIcon type={item.type} crossed={!item.supported} size="1.15rem" />
+            <span class="support__tip" id={tipId(item.type)} role="tooltip">
+              <strong class="support__tip-title">{item.label}</strong>
+              {item.note && <span class="support__tip-note">{item.note}</span>}
+            </span>
+          </span>
+        </li>
       ))}
-    </div>
-  )
-}
+    </ul>
+  ))}
+</div>
 
 <style>
   .support {

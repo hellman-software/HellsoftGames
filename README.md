@@ -1,6 +1,6 @@
 # Hellsoft Games
 
-The website that catalogues the browser games built by Erik Hellman (Hellsoft).
+The website that catalogues the games built by Erik Hellman (Hellsoft).
 Live at <https://games.hellsoft.se/>.
 
 Built with [Astro](https://astro.build) as a fully static site. No client-side
@@ -29,6 +29,10 @@ hand-written fields freely; never edit `sync:` by hand.
 - `id` is the URL slug (`/games/<id>/`) and must be unique.
 - `listed: false` keeps a game in the data but off the site.
 - `status` is one of `released`, `playable`, `playtest`, `prototype`, `archived`.
+- `browserPlayable` is required: use `true` for games that run in a browser and `false`
+  for games that require installation. Cards and game pages show this explicitly,
+  independently of device support. `playUrl` links to the game or its download/store
+  page; games requiring installation use a “Get game” button.
 - `pixelArt: true` renders screenshots with `image-rendering: pixelated`.
 - `cover` is the card image (16:9 works best). Without a cover, `logo` is shown
   on a grid background instead.
@@ -84,7 +88,7 @@ There are three slots:
 
 | Slot id            | Where                                  | Size                      |
 | ------------------ | -------------------------------------- | ------------------------- |
-| `home-leaderboard` | Home page, under the hero              | 728×90, 320×50 on mobile  |
+| `home-leaderboard` | Home page, below the featured game     | 728×90, 320×50 on mobile  |
 | `home-feed-1`      | Home page, in the grid after 4th card  | native card               |
 | `game-bottom`      | Bottom of every game page              | 300×250                   |
 
