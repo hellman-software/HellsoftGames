@@ -81,6 +81,24 @@ Keep `spdx-license-list` updated as SPDX adds licenses.
 
 The sync is a manual step. Run it, review `git diff`, commit.
 
+## Favicons and social sharing
+
+The favicon uses the header's gradient H mark. `public/favicon.svg` is the
+source for the PNG, ICO and Apple touch icon fallbacks. The homepage's social
+card is `public/social/hellsoft-games.png` (1200×630), composed from the brand
+and existing game screenshots. Regenerate these checked-in assets with:
+
+```bash
+npm run assets:brand
+```
+
+Edit `scripts/generate-brand-assets.mjs` to change the card's artwork or copy.
+`src/layouts/Base.astro` supplies Open Graph and Twitter card metadata with
+absolute URLs, image dimensions and alt text. Each game page uses its title,
+blurb and a PNG of its cover (or first screenshot), generated during the Astro
+build at the same aspect ratio, up to 1200×630 without upscaling. Pages without
+artwork use the branded card.
+
 ## Ads
 
 Ads are Google AdSense units rendered by

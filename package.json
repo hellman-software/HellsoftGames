@@ -14,7 +14,8 @@
     "sync": "node scripts/sync-games.mjs",
     "sync:dry": "node scripts/sync-games.mjs --dry-run",
     "test": "node --test scripts/*.test.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "assets:brand": "node scripts/generate-brand-assets.mjs"
   },
   "dependencies": {
     "@fontsource-variable/space-grotesk": "^5.3.0",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "sharp": "^0.35.5",
     "spdx-license-list": "^6.12.0",
     "typescript": "^5.9.3",
     "yaml": "^2.8.1"

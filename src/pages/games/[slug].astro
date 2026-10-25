@@ -27,13 +27,26 @@ const body = paragraphs(description || sync?.description || '');
 const hero = cover ?? screenshots[0]?.src ?? null;
 const gallery = screenshots.filter((s) => s.src !== hero);
 const poster = video && hero ? await getImage({ src: hero, width: 1280, height: 720 }) : null;
+// Social crawlers need a public raster image with a consistent card aspect ratio.
+// Astro does not upscale images; keep the requested dimensions within the source.
+const socialScale = hero ? Math.min(30, Math.floor(hero.width / 40), Math.floor(hero.height / 21)) : 30;
+const socialWidth = socialScale * 40;
+const socialHeight = socialScale * 21;
+const socialImage = hero ? await getImage({ src: hero, width: socialWidth, height: socialHeight, fit: 'cover', format: 'png' }) : null;
 const support = [
   { label: 'Controls', items: controlsOf(game) },
   { label: 'Devices', items: devicesOf(game) },
 ].filter((g) => g.items.length > 0);
 ---
 
-<Base title={title} description={blurb} image={hero ? hero.src : undefined}>
+<Base
+  title={title}
+  description={blurb}
+  image={socialImage?.src}
+  imageAlt={socialImage ? `${title} — game artwork` : undefined}
+  imageWidth={socialImage ? socialWidth : undefined}
+  imageHeight={socialImage ? socialHeight : undefined}
+>
   <article class="game">
     <div class:list={['game__hero reveal', { 'game__hero--video': video }]}>
       {
