@@ -1,7 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { file } from 'astro/loaders';
 
-export const STATUSES = ['released', 'playable', 'playtest', 'prototype', 'archived'] as const;
+export const STATUSES = ['released', 'playable', 'playtest', 'prototype', 'paused', 'archived'] as const;
 export const CONTROLS = ['keyboard-mouse', 'keyboard', 'gamepad', 'touch'] as const;
 export const DEVICES = ['desktop', 'tablet', 'phone'] as const;
 

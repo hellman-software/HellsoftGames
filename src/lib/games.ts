@@ -13,6 +13,7 @@ export const STATUS_LABEL: Record<Game['data']['status'], string> = {
   playable: 'Playable',
   playtest: 'Playtest',
   prototype: 'Prototype',
+  paused: 'Paused indefinitely',
   archived: 'Archived',
 };
 
