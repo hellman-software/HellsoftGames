@@ -13,6 +13,10 @@ interface Props {
 }
 const { game, featured = false } = Astro.props;
 const { title, genre, blurb, status, playUrl, cover, logo, pixelArt, tech } = game.data;
+const PlayAction = status === 'paused' ? 'button' : 'a';
+const playAttributes = status === 'paused'
+  ? { type: 'button' as const, disabled: true, title: 'This game is paused' }
+  : { href: playUrl, target: '_blank', rel: 'noopener' };
 const href = withBase(`/games/${game.id}/`);
 const imgW = featured ? 1280 : 720;
 const imgH = featured ? 720 : 405;
@@ -62,10 +66,10 @@ const imgH = featured ? 720 : 405;
       )
     }
     <div class="card__actions">
-      <a class="btn card__play" href={playUrl} target="_blank" rel="noopener">
+      <PlayAction class="btn card__play" {...playAttributes}>
         <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
         {game.data.browserPlayable ? 'Play' : 'Get game'}
-      </a>
+      </PlayAction>
       <span class="card__more" aria-hidden="true">Details <span class="card__arrow">→</span></span>
     </div>
   </div>
