@@ -64,7 +64,7 @@
   title: Fantasy Sim World
   order: 20
   listed: true
-  status: released
+  status: paused
   genre: AI-driven life simulation
   blurb: A 3D fantasy village where a dozen AI villagers live, gossip, marry and fight. Everyone who opens the page watches the same village.
   description: |
@@ -216,7 +216,7 @@
   title: FightWorld
   order: 50
   listed: true
-  status: playtest
+  status: paused
   genre: Multiplayer action RPG
   blurb: A cosy multiplayer PvPvE brawler. Pick a class, explore a shared fantasy world, fight monsters and other players, and grow your hero.
   description: |
@@ -233,8 +233,7 @@
 
     Sign in with Google or GitHub so your character is saved. Only your name
     and account ID are stored. Keyboard, mouse and gamepad are supported, and
-    the music is synthesised in the browser. The game is in playtesting, so
-    expect rough edges.
+    the music is synthesised in the browser. The game is paused indefinitely.
   playUrl: https://fightworld.fly.dev/
   browserPlayable: true
   repo: {owner: ErikHellman, name: FightWorld}
@@ -266,7 +265,7 @@
   title: Micro Mayhem
   order: 70
   listed: true
-  status: playtest
+  status: paused
   genre: Toy kart racing
   blurb: Big adventures. Tiny wheels. Race toy karts around three bedroom circuits, drift for boosts and unbox items. Play solo or race with friends online.
   description: |
@@ -280,8 +279,7 @@
     rooms let you invite friends, with bots filling the spare seats.
 
     Play as a guest with a keyboard or gamepad. The game uses WebGPU where
-    available and falls back to WebGL2. This is a playable development build,
-    so expect rough edges while playtesting continues.
+    available and falls back to WebGL2. The game is paused indefinitely.
   playUrl: https://micromayhem.fly.dev/
   browserPlayable: true
   repo: {owner: ErikHellman, name: MicroMayhem}
