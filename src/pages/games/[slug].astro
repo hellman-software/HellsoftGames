@@ -18,6 +18,10 @@ export async function getStaticPaths() {
 const { game } = Astro.props;
 const { title, genre, blurb, description, status, playUrl, browserPlayable, tech, tags, cover, logo, video, screenshots, pixelArt, sync } =
   game.data;
+const PlayAction = status === 'paused' ? 'button' : 'a';
+const playAttributes = status === 'paused'
+  ? { type: 'button' as const, disabled: true, title: 'This game is paused' }
+  : { href: playUrl, target: '_blank', rel: 'noopener' };
 const repo = repoUrl(game);
 const licensing = licensingOf(sync);
 const release = sync?.release ?? null;
@@ -95,10 +99,10 @@ const support = [
         <h1 class="game__title">{title}</h1>
         <p class="game__blurb">{blurb}</p>
         <div class="game__actions">
-          <a class="btn" href={playUrl} target="_blank" rel="noopener">
+          <PlayAction class="btn" {...playAttributes}>
             <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
             {browserPlayable ? 'Play now' : 'Get game'}
-          </a>
+          </PlayAction>
           {
             repo && (
               <a class="btn btn--ghost" href={repo} target="_blank" rel="noopener">
@@ -234,10 +238,10 @@ const support = [
             )
           }
         </dl>
-        <a class="btn facts__play" href={playUrl} target="_blank" rel="noopener">
+        <PlayAction class="btn facts__play" {...playAttributes}>
           <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
           {browserPlayable ? 'Play now' : 'Get game'}
-        </a>
+        </PlayAction>
       </aside>
     </div>
 

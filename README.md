@@ -29,7 +29,7 @@ hand-written fields freely; never edit `sync:` by hand.
 - `id` is the URL slug (`/games/<id>/`) and must be unique.
 - `listed: false` keeps a game in the data but off the site.
 - `status` is one of `released`, `playable`, `playtest`, `prototype`, `paused`, `archived`.
-  Use `paused` to show a “Paused indefinitely” notice on cards and game pages.
+  Use `paused` to show a “Paused” notice and disable play buttons on cards and game pages.
 - `browserPlayable` is required: use `true` for games that run in a browser and `false`
   for games that require installation. Cards and game pages show this explicitly,
   independently of device support. `playUrl` links to the game or its download/store

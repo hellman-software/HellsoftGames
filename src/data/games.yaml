@@ -233,7 +233,7 @@
 
     Sign in with Google or GitHub so your character is saved. Only your name
     and account ID are stored. Keyboard, mouse and gamepad are supported, and
-    the music is synthesised in the browser. The game is paused indefinitely.
+    the music is synthesised in the browser. The game is paused.
   playUrl: https://fightworld.fly.dev/
   browserPlayable: true
   repo: {owner: ErikHellman, name: FightWorld}
@@ -279,7 +279,7 @@
     rooms let you invite friends, with bots filling the spare seats.
 
     Play as a guest with a keyboard or gamepad. The game uses WebGPU where
-    available and falls back to WebGL2. The game is paused indefinitely.
+    available and falls back to WebGL2. The game is paused.
   playUrl: https://micromayhem.fly.dev/
   browserPlayable: true
   repo: {owner: ErikHellman, name: MicroMayhem}
