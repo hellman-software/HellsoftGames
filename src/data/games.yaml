@@ -380,3 +380,45 @@
     pushedAt: 2025-06-13T13:18:04Z
     release: null
     syncedAt: 2026-10-19
+
+- id: malmheim
+  title: Malmheim
+  order: 60
+  listed: true
+  status: playable
+  genre: 3D space real-time strategy
+  blurb: Mine ore and crystal, build a fleet and fight space pirates in full 3D. A touch-first space RTS for iOS, Android and desktop.
+  description: |
+    Malmheim is a real-time strategy game in full 3D space. Start with a
+    miner and a scout, harvest ore and crystal, deploy a station and research
+    new ships. Build a fleet to drive pirates and monsters out of the sector.
+
+    Ships move on all three axes, with a free orbit camera and controls
+    inspired by Homeworld. Play a skirmish on Shattered Reach or progress
+    through a three-mission campaign, from surviving pirate raids to
+    destroying their outposts. Matches last around 10 to 20 minutes.
+
+    Built with Rust and Bevy for iOS, Android and desktop, Malmheim supports
+    touch, keyboard and mouse, and game controllers. Adaptive synthesised
+    music follows exploration and combat. The game is playable, with testing
+    on real phones still pending.
+  playUrl: https://github.com/ErikHellman/Malmheim/releases
+  browserPlayable: false
+  repo: {owner: ErikHellman, name: Malmheim}
+  tech: [Rust, Bevy]
+  tags: [strategy, rts, space, 3d, singleplayer]
+  pixelArt: false
+  cover: ../assets/games/malmheim/cover.jpg
+  logo: ../assets/games/malmheim/icon.png
+  screenshots:
+    - {src: ../assets/games/malmheim/1-fleet.jpg, alt: A fleet navigating the three-dimensional space battlefield in Malmheim}
+    - {src: ../assets/games/malmheim/2-base.jpg, alt: A base station and ships in Malmheim}
+    - {src: ../assets/games/malmheim/3-ragnarok.jpg, alt: The Ragnarok campaign mission in Malmheim}
+  controls:
+    - {type: touch, note: "Tap to select and give orders; use gestures to orbit, zoom and move ships in three dimensions."}
+    - {type: keyboard-mouse, note: "Desktop camera and fleet controls."}
+    - {type: gamepad, note: "Xbox, PlayStation, Nintendo Switch Pro and standard controllers, including menus."}
+  devices:
+    - {type: phone, note: "Built for iOS and Android; real-device testing is pending."}
+    - {type: tablet, note: "Touch controls and a HUD that scales to the screen."}
+    - {type: desktop, note: "Native desktop build."}
