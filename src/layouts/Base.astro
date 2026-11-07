@@ -9,6 +9,7 @@ import { ADS_ENABLED, adsenseScriptSrc } from '../lib/ads';
 
 interface Props {
   title: string;
+  ads?: boolean;
   description: string;
   /** Site-relative path to a social image, already base-prefixed by the caller. */
   image?: string;
@@ -18,7 +19,7 @@ interface Props {
 }
 
 const {
-  title, description,
+  title, description, ads = true,
   image = withBase('social/hellsoft-games.png'),
   imageAlt = 'Hellsoft Games — games by Erik Hellman, featuring Fimbulvetr, Fantasy Sim World and Bilstöld.',
   imageWidth = 1200,
@@ -59,7 +60,7 @@ const ogImage = new URL(image, Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
-    {ADS_ENABLED && <script is:inline async src={adsenseScriptSrc} crossorigin="anonymous" />}
+    {ads && ADS_ENABLED && <script is:inline async src={adsenseScriptSrc} crossorigin="anonymous" />}
     <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
     <script is:inline>
       (function () {

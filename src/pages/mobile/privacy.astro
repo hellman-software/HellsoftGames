@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Mobile game privacy policy" description="How Hellman Software AB handles information in its iOS and Android games, including Malmheim." ads={false}>
+  <article class="privacy">
+    <header>
+      <p class="eyebrow">Hellsoft Games · iOS &amp; Android</p>
+      <h1>Mobile game privacy policy</h1>
+      <p class="muted">Effective and last updated: <time datetime="2026-11-07">7 November 2026</time></p>
+      <p>This policy explains how Hellman Software AB, Stockholm, Sweden ("we", "us"), handles information in our mobile games. It currently covers <strong>Malmheim</strong> on iOS and Android and applies to other mobile games we publish that link to this policy. A game with different practices will have an additional notice or a separate policy.</p>
+    </header>
+
+    <section aria-labelledby="overview">
+      <h2 id="overview">At a glance</h2>
+      <p>Our games have no accounts, advertising, in-app purchases, or subscriptions. We do not sell personal information, share it for advertising, or track players across other companies' apps or websites. Progress and settings stay on your device. We use Sentry for crash reporting and Plausible for privacy-friendly usage statistics, as described below.</p>
+    </section>
+
+    <section aria-labelledby="local">
+      <h2 id="local">Information on your device</h2>
+      <p>Game progress, saves, and settings are stored locally. We do not upload these to our own servers or provide cloud saves or game-managed backups. The games do not require additional permissions for resources such as your location, contacts, camera, microphone, or photos.</p>
+    </section>
+
+    <section aria-labelledby="crashes">
+      <h2 id="crashes">Crash reports: Sentry</h2>
+      <p>We use Sentry Cloud's EU region to diagnose crashes and improve reliability. Crash reports may contain technical details such as an error description, stack trace, app version, operating system version, and the time of an error. Our configuration excludes IP addresses from stored crash reports, player and device identifiers, and personal information.</p>
+      <p>Sending a report over the internet necessarily exposes a network IP address to the receiving infrastructure; this is different from retaining it in a crash report. We do not use crash reporting to identify players or build player profiles.</p>
+      <p>Crash reporting runs automatically, without an in-game opt-in or toggle. Sentry retains error events under its plan's standard retention period: 30 days on the Developer plan or 90 days on paid plans. We do not configure extended event retention. Issue-level counts may remain after individual events expire.</p>
+      <p>Read more in <a href="https://sentry.io/privacy/">Sentry's privacy policy</a> and <a href="https://www.sentry.help/en/articles/13964336-why-does-the-event-count-in-my-issue-not-match-up-with-the-count-in-the-all-events-tab-of-the-issue">Sentry's error retention explanation</a>.</p>
+    </section>
+
+    <section aria-labelledby="analytics">
+      <h2 id="analytics">Usage statistics: Plausible</h2>
+      <p>We use Plausible Cloud to understand overall game usage and improve our games. We send no persistent player or installation ID and no custom properties. Plausible does not use advertising identifiers or cookies to follow players across apps or websites.</p>
+      <p>Analytics requests can include an event name and technical request information. Plausible processes the IP address and user-agent to derive information such as approximate location, operating system, and device type, and to generate a daily identifier. It does not store raw IP addresses or user-agent strings. The daily salt used for identifiers is deleted every 24 hours; identifiers do not persist across days. Precise device location is not requested.</p>
+      <p>Plausible stores event and session records and presents aggregate statistics. Usage analytics runs automatically, without an in-game opt-in or toggle. Under Plausible's default retention, statistics have no fixed expiry while our subscription remains active, unless we delete them.</p>
+      <p>Plausible Cloud processes and stores analytics data in the EU. See <a href="https://plausible.io/data-policy">Plausible's data policy</a> and <a href="https://plausible.io/vs-google-analytics">its retention information</a>.</p>
+    </section>
+
+    <section aria-labelledby="purpose">
+      <h2 id="purpose">Purposes and legal basis</h2>
+      <p>We use technical diagnostics to find and fix faults and usage statistics to understand and improve our games. To the extent this involves personal data under EU or UK data protection law, we rely on our legitimate interests in maintaining reliable games and understanding their use, subject to players' rights and interests, including those of children. We do not use these services for advertising, automated decisions with legal or similarly significant effects, or profiling players.</p>
+    </section>
+
+    <section aria-labelledby="sharing">
+      <h2 id="sharing">Service providers and security</h2>
+      <p>Sentry and Plausible process the information described above on our behalf. We use their EU services; their authorised subprocessors may help operate those services. Where personal data is transferred outside the EEA, applicable safeguards such as European Commission standard contractual clauses are required. Contact us for information about applicable safeguards.</p>
+      <p>We use reasonable technical and organisational measures to protect information, including encrypted connections to these services and restricting access to authorised personnel. No storage or transmission method can be guaranteed completely secure. We may also disclose information if required by law or necessary to protect legal rights.</p>
+    </section>
+
+    <section aria-labelledby="deletion">
+      <h2 id="deletion">Uninstalling, retention, and your rights</h2>
+      <p>To remove local game data, delete the game and its app data from your device. Offloading an app while keeping its data does not remove that data. Uninstalling stops future reports and analytics from that installation, but does not delete information already submitted to Sentry or Plausible. Those records follow the retention periods above.</p>
+      <p>Where data protection law applies, you may request access, correction, deletion, restriction, or portability of your personal data, and object to processing based on legitimate interests. Email <a href="mailto:erik.hellman@hellsoft.se">erik.hellman@hellsoft.se</a>. Because we do not keep player identifiers, we may be unable to associate a particular report or statistical record with you. We do not collect extra identifying information solely to identify anonymous records.</p>
+      <p>If you contact us, we process your email address and message to respond and handle your request. We retain that correspondence only as long as needed to resolve the request and meet applicable legal obligations. We normally respond to data protection requests within one month, subject to lawful extensions.</p>
+      <p>You may complain to your local data protection authority or Sweden's <a href="https://www.imy.se/en/">Authority for Privacy Protection (IMY)</a>.</p>
+    </section>
+
+    <section aria-labelledby="children">
+      <h2 id="children">Children</h2>
+      <p>Our games are intended for a general audience and are suitable for ages 7 and above. They are not currently offered in Apple's Kids Category or Google Play's Families programme. We do not ask children to provide names, contact details, or other personal information, and do not use targeted advertising. The limited technical processing described above also applies when children play.</p>
+      <p>If you believe a child has provided personal information to us, please contact us so we can investigate and remove it where appropriate.</p>
+    </section>
+
+    <section aria-labelledby="scope">
+      <h2 id="scope">App stores, website, and changes</h2>
+      <p>Apple and Google independently process information when you use their stores or platform services under their own privacy policies. This policy covers our mobile games; it does not describe data handling on other websites, including the wider Hellsoft Games catalogue.</p>
+      <p>We will update this policy when our practices change and show the revised date here. Material changes will also be communicated in the affected game where appropriate. This policy does not replace any consent or permission required by law or the platform.</p>
+    </section>
+
+    <section aria-labelledby="contact">
+      <h2 id="contact">Contact</h2>
+      <p>The controller responsible for personal data described in this policy is:</p>
+      <address>Hellman Software AB<br />Stockholm, Sweden<br /><a href="mailto:erik.hellman@hellsoft.se">erik.hellman@hellsoft.se</a><br /><a href="https://hellsoft.se">hellsoft.se</a></address>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .privacy { max-width: 48rem; margin-inline: auto; padding-block: var(--space-6); overflow-wrap: anywhere; }
+  .eyebrow { color: var(--accent-2); font-size: 0.85rem; letter-spacing: 0.06em; }
+  h1 { font-size: clamp(2rem, 6vw, 3.25rem); line-height: 1.1; margin-block: var(--space-3); }
+  h2 { font-size: 1.4rem; line-height: 1.3; margin-bottom: var(--space-3); }
+  section { margin-top: var(--space-5); }
+  p, address { line-height: 1.8; color: var(--text-2); }
+  p + p { margin-top: var(--space-3); }
+  address { font-style: normal; }
+  a { color: var(--link); text-underline-offset: 0.18em; }
+  @media print { .privacy { max-width: none; padding: 0; } h2 { break-after: avoid; } }
+</style>
