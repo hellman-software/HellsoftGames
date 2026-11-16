@@ -5,7 +5,8 @@ export type Game = CollectionEntry<'games'>;
 
 export async function getListedGames(): Promise<Game[]> {
   const games = await getCollection('games', ({ data }) => data.listed);
-  return games.sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
+  const group = (game: Game) => game.data.status === 'archived' ? 2 : game.data.status === 'paused' ? 1 : 0;
+  return games.sort((a, b) => group(a) - group(b) || a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
 }
 
 export const STATUS_LABEL: Record<Game['data']['status'], string> = {
