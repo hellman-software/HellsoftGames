@@ -60,6 +60,47 @@
       source: package
     syncedAt: 2026-10-19
 
+- id: jarnvidr
+  title: Járnviðr
+  order: 15
+  listed: true
+  status: prototype
+  genre: First-person survival and building
+  blurb: Survive a Nordic island shaped by folklore. Dig the land, craft tools and build a homestead before night falls. An early browser preview.
+  description: |
+    Wash up on a seeded Nordic island where every surface can be dug and
+    reshaped. Gather wood, stone and ore, craft better tools, and build timber
+    and stone halls whose weight must reach the ground or they collapse.
+
+    Keep fed, warm and rested, and find shelter and a fire before nightfall.
+    Explore forests, bogs and fells, follow the Völva's quests, and face wolves,
+    draugr and trolls. Noise, light and a growing settlement can draw raids;
+    Peaceful difficulty gives you more room to explore and build.
+
+    Járnviðr runs in a desktop browser with WebGPU, using keyboard and mouse
+    or a gamepad. It autosaves locally, with optional accounts and cloud saves,
+    and supports English and Swedish. An optional AI storyteller adds narration
+    and companion conversations; you can play without it.
+
+    This is an early preview: expect rough edges, missing features and bugs.
+    Saves may not carry over to later versions.
+  playUrl: https://jarnvidr.hellsoft.se/
+  browserPlayable: true
+  repo: {owner: ErikHellman, name: jarnvidr}
+  tech: [Three.js, WebGPU, TypeScript, Rust, WebAssembly, Preact]
+  tags: [survival, building, norse, voxel, 3d, singleplayer]
+  pixelArt: false
+  cover: ../assets/games/jarnvidr/coast.webp
+  screenshots:
+    - {src: ../assets/games/jarnvidr/coast.webp, alt: First-person view of a grassy Nordic coastline with pine and birch trees in Járnviðr}
+    - {src: ../assets/games/jarnvidr/forest.webp, alt: Exploring a sunlit pine and birch forest above the sea in Járnviðr}
+    - {src: ../assets/games/jarnvidr/shoreline.webp, alt: Boars roaming a grassy shoreline with distant cliffs and the sea in Járnviðr}
+  controls:
+    - {type: keyboard-mouse, note: "WASD to move, mouse to look, E to interact, Tab for inventory and crafting, and B to build. Keys can be remapped."}
+    - {type: gamepad, note: "Standard controllers, with rebindable buttons."}
+  devices:
+    - {type: desktop, note: "Requires WebGPU. Autosaves in your browser; optional sign-in enables cloud saves."}
+
 - id: fantasy-sim-world
   title: Fantasy Sim World
   order: 20
