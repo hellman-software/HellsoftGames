@@ -1,14 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { withBase } from '../../lib/url';
 ---
 
-<Base title="Mobile game privacy policy" description="How Hellman Software AB handles information in its iOS and Android games, including Malmheim." ads={false}>
+<Base title="Mobile game privacy policy" description="How Hellman Software AB handles information in its iOS and Android games." ads={false}>
   <article class="privacy">
     <header>
       <p class="eyebrow">Hellsoft Games · iOS &amp; Android</p>
       <h1>Mobile game privacy policy</h1>
       <p class="muted">Effective and last updated: <time datetime="2026-11-07">7 November 2026</time></p>
-      <p>This policy explains how Hellman Software AB, Stockholm, Sweden ("we", "us"), handles information in our mobile games. It currently covers <strong>Malmheim</strong> on iOS and Android and applies to other mobile games we publish that link to this policy. A game with different practices will have an additional notice or a separate policy.</p>
+      <p>This policy explains how Hellman Software AB, Stockholm, Sweden ("we", "us"), handles information in our mobile games. It applies to mobile games we publish that link to this policy. A game with different practices has an additional notice or a separate policy: <strong>Malmheim</strong> is covered by the <a href={withBase('/games/malmheim/privacy/')}>Malmheim privacy policy</a>.</p>
     </header>
 
     <section aria-labelledby="overview">

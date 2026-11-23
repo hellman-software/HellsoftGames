@@ -1,0 +1,89 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { withBase } from '../../../lib/url';
+---
+
+<Base title="Malmheim privacy policy" description="What Malmheim stores on your device and the anonymous, opt-in diagnostics it can send to Hellsoft's own Vaka service." ads={false}>
+  <article class="privacy">
+    <header>
+      <p class="eyebrow"><a href={withBase('/games/malmheim/')}>Malmheim</a> · iOS, Android &amp; desktop</p>
+      <h1>Malmheim privacy policy</h1>
+      <p class="muted">Effective and last updated: <time datetime="2026-11-23">23 November 2026</time></p>
+      <p>This policy explains how Hellman Software AB, Stockholm, Sweden ("we", "us"), handles information in <strong>Malmheim</strong> on iOS, Android and desktop.</p>
+    </header>
+
+    <section aria-labelledby="overview">
+      <h2 id="overview">At a glance</h2>
+      <p>Malmheim plays offline and has no accounts, advertising, in-app purchases or tracking. Your progress and settings stay on your device. The only data the game can send is anonymous crash reports and gameplay statistics, and only after you turn on <strong>Diagnostics</strong> in the settings. It is off when you install the game. The data goes to Vaka, a crash-reporting and analytics service we run ourselves. We do not sell it, share it for advertising or use it to identify you.</p>
+    </section>
+
+    <section aria-labelledby="local">
+      <h2 id="local">Information on your device</h2>
+      <p>The game keeps your campaign progress and settings, including whether Diagnostics is on, in a small file in the game's own storage on your device. It is never uploaded, and we offer no cloud saves. The game asks for no permissions for your location, contacts, camera, microphone or photos. On Android it has internet access only so that Diagnostics can work.</p>
+    </section>
+
+    <section aria-labelledby="diagnostics">
+      <h2 id="diagnostics">Optional diagnostics</h2>
+      <p>While Diagnostics is on, the game sends the following:</p>
+      <ul>
+        <li><strong>Crash reports.</strong> When the game crashes: the error message, a stack trace, where in the game's code the crash happened, and a list of the program files loaded in memory so we can decode the stack trace. That list contains the files' locations on the device, which can include the folder the game is installed in.</li>
+        <li><strong>Sessions.</strong> That the game was started, how long it ran, and whether it closed normally or crashed, so we can see how often the game crashes.</li>
+        <li><strong>Match statistics.</strong> When a match starts and ends: skirmish or campaign, the map, whether you won or lost, and the match length in whole minutes.</li>
+        <li><strong>Technical context.</strong> The game version, whether it is a development or release build, and, with crash reports, the operating system and processor type (for example "android" and "aarch64").</li>
+      </ul>
+      <p>Each launch of the game gets a new random id, so separate play sessions cannot be linked to each other, to a device or to you. The game sends no user, account, device or advertising id, no name, no saves and no location, and it does not forward its log output.</p>
+      <p>Like any internet request, sending diagnostics reveals your IP address to our server. The server uses it to look up your country and to limit abusive traffic, and does not store the address. Country is the only location information we keep.</p>
+      <p>If you turn Diagnostics off, sending stops immediately. If you turn it on again in the same session, it starts on the next launch.</p>
+    </section>
+
+    <section aria-labelledby="storage">
+      <h2 id="storage">Where it goes and how long we keep it</h2>
+      <p>Diagnostics are sent encrypted over HTTPS to our own Vaka instance, hosted by Fly.io in Stockholm, Sweden. Fly.io acts as our hosting provider. The data is not shared with anyone else, combined with other data or used for advertising. Crash reports, sessions and match statistics are deleted automatically after 90 days. Counts derived from them, such as the number of crashes in a release, may remain after that.</p>
+    </section>
+
+    <section aria-labelledby="purpose">
+      <h2 id="purpose">Purposes and legal basis</h2>
+      <p>We use diagnostics only to find and fix crashes and to improve the game's balance and performance. Diagnostics run only after you turn them on, so to the extent they involve personal data under EU or UK data protection law, we rely on your consent. You can withdraw it at any time by turning Diagnostics off. We make no automated decisions about players and build no player profiles.</p>
+    </section>
+
+    <section aria-labelledby="rights">
+      <h2 id="rights">Removing data and your rights</h2>
+      <p>To remove the game's data from your device, delete the game and its app data. Uninstalling stops all future diagnostics but does not delete reports already sent. Those expire as described above.</p>
+      <p>Where data protection law applies, you may request access to, correction or deletion of your personal data, and withdraw consent. Email <a href="mailto:erik.hellman@hellsoft.se">erik.hellman@hellsoft.se</a>. Because diagnostics carry no identifier that ties them to you, we usually cannot find the records of one particular player, and we do not collect extra information to do so. If you contact us, we use your email address and message only to answer you, and keep them only as long as needed.</p>
+      <p>You may complain to your local data protection authority or to Sweden's <a href="https://www.imy.se/en/">Authority for Privacy Protection (IMY)</a>.</p>
+    </section>
+
+    <section aria-labelledby="children">
+      <h2 id="children">Children</h2>
+      <p>Malmheim is made for a general audience and does not ask anyone, including children, for names, contact details or other personal information. Diagnostics are anonymous and stay off unless someone turns them on.</p>
+    </section>
+
+    <section aria-labelledby="scope">
+      <h2 id="scope">App stores and changes</h2>
+      <p>Apple, Google and other stores you download Malmheim from process information under their own privacy policies. We receive only the aggregated statistics they show every developer. This policy covers the game itself, not this website.</p>
+      <p>If the game starts sending anything new, we will update this page and its date before that version is released.</p>
+    </section>
+
+    <section aria-labelledby="contact">
+      <h2 id="contact">Contact</h2>
+      <p>The controller responsible for personal data described in this policy is:</p>
+      <address>Hellman Software AB<br />Stockholm, Sweden<br /><a href="mailto:erik.hellman@hellsoft.se">erik.hellman@hellsoft.se</a><br /><a href="https://hellsoft.se">hellsoft.se</a></address>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .privacy { max-width: 48rem; margin-inline: auto; padding-block: var(--space-6); overflow-wrap: anywhere; }
+  .eyebrow { color: var(--accent-2); font-size: 0.85rem; letter-spacing: 0.06em; }
+  .eyebrow a { color: inherit; }
+  h1 { font-size: clamp(2rem, 6vw, 3.25rem); line-height: 1.1; margin-block: var(--space-3); }
+  h2 { font-size: 1.4rem; line-height: 1.3; margin-bottom: var(--space-3); }
+  section { margin-top: var(--space-5); }
+  p, li, address { line-height: 1.8; color: var(--text-2); }
+  p + p, ul + p, p + ul { margin-top: var(--space-3); }
+  ul { padding-left: 1.25rem; }
+  li + li { margin-top: var(--space-2); }
+  address { font-style: normal; }
+  a { color: var(--link); text-underline-offset: 0.18em; }
+  @media print { .privacy { max-width: none; padding: 0; } h2 { break-after: avoid; } }
+</style>
