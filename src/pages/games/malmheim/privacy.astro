@@ -3,7 +3,7 @@ import Base from '../../../layouts/Base.astro';
 import { withBase } from '../../../lib/url';
 ---
 
-<Base title="Malmheim privacy policy" description="What Malmheim stores on your device and the anonymous, opt-in diagnostics it can send to Hellsoft's own Vaka service." ads={false}>
+<Base title="Malmheim privacy policy" description="What Malmheim stores on your device and the anonymous diagnostics it sends to Hellsoft's own Vaka service, and how to turn them off." ads={false}>
   <article class="privacy">
     <header>
       <p class="eyebrow"><a href={withBase('/games/malmheim/')}>Malmheim</a> · iOS, Android &amp; desktop</p>
@@ -14,7 +14,7 @@ import { withBase } from '../../../lib/url';
 
     <section aria-labelledby="overview">
       <h2 id="overview">At a glance</h2>
-      <p>Malmheim plays offline and has no accounts, advertising, in-app purchases or tracking. Your progress and settings stay on your device. The only data the game can send is anonymous crash reports and gameplay statistics, and only after you turn on <strong>Diagnostics</strong> in the settings. It is off when you install the game. The data goes to Vaka, a crash-reporting and analytics service we run ourselves. We do not sell it, share it for advertising or use it to identify you.</p>
+      <p>Malmheim plays offline and has no accounts, advertising, in-app purchases or tracking. Your progress and settings stay on your device. The only data the game sends is anonymous crash reports and gameplay statistics. This is on when you install the game, and you can turn it off at any time with the <strong>Diagnostics</strong> button on the main menu or pause menu (see <a href="#turn-off">how to turn it off</a>). The data goes to Vaka, a crash-reporting and analytics service we run ourselves. We do not sell it, share it for advertising or use it to identify you.</p>
     </section>
 
     <section aria-labelledby="local">
@@ -23,8 +23,8 @@ import { withBase } from '../../../lib/url';
     </section>
 
     <section aria-labelledby="diagnostics">
-      <h2 id="diagnostics">Optional diagnostics</h2>
-      <p>While Diagnostics is on, the game sends the following:</p>
+      <h2 id="diagnostics">Diagnostics</h2>
+      <p>Diagnostics are on from the first launch. While they are on, the game sends the following:</p>
       <ul>
         <li><strong>Crash reports.</strong> When the game crashes: the error message, a stack trace, where in the game's code the crash happened, and a list of the program files loaded in memory so we can decode the stack trace. That list contains the files' locations on the device, which can include the folder the game is installed in.</li>
         <li><strong>Sessions.</strong> That the game was started, how long it ran, and whether it closed normally or crashed, so we can see how often the game crashes.</li>
@@ -33,7 +33,7 @@ import { withBase } from '../../../lib/url';
       </ul>
       <p>Each launch of the game gets a new random id, so separate play sessions cannot be linked to each other, to a device or to you. The game sends no user, account, device or advertising id, no name, no saves and no location, and it does not forward its log output.</p>
       <p>Like any internet request, sending diagnostics reveals your IP address to our server. The server uses it to look up your country and to limit abusive traffic, and does not store the address. Country is the only location information we keep.</p>
-      <p>If you turn Diagnostics off, sending stops immediately. If you turn it on again in the same session, it starts on the next launch.</p>
+      <p id="turn-off"><strong>To turn diagnostics off,</strong> tap the <strong>Diagnostics: On</strong> button on the main menu or the pause menu so it reads <strong>Diagnostics: Off</strong>. Sending stops immediately, and the choice is saved for future launches. If you turn it back on, sending resumes from the next launch.</p>
     </section>
 
     <section aria-labelledby="storage">
@@ -43,19 +43,19 @@ import { withBase } from '../../../lib/url';
 
     <section aria-labelledby="purpose">
       <h2 id="purpose">Purposes and legal basis</h2>
-      <p>We use diagnostics only to find and fix crashes and to improve the game's balance and performance. Diagnostics run only after you turn them on, so to the extent they involve personal data under EU or UK data protection law, we rely on your consent. You can withdraw it at any time by turning Diagnostics off. We make no automated decisions about players and build no player profiles.</p>
+      <p>We use diagnostics only to find and fix crashes and to improve the game's balance and performance. To the extent diagnostics involve personal data under EU or UK data protection law, we rely on our legitimate interest in keeping the game stable and well balanced. We consider this proportionate because the data is minimal, carries no identifier that links it to you, and you can turn it off at any time. You can object to this processing by turning Diagnostics off. We make no automated decisions about players and build no player profiles.</p>
     </section>
 
     <section aria-labelledby="rights">
       <h2 id="rights">Removing data and your rights</h2>
       <p>To remove the game's data from your device, delete the game and its app data. Uninstalling stops all future diagnostics but does not delete reports already sent. Those expire as described above.</p>
-      <p>Where data protection law applies, you may request access to, correction or deletion of your personal data, and withdraw consent. Email <a href="mailto:erik.hellman@hellsoft.se">erik.hellman@hellsoft.se</a>. Because diagnostics carry no identifier that ties them to you, we usually cannot find the records of one particular player, and we do not collect extra information to do so. If you contact us, we use your email address and message only to answer you, and keep them only as long as needed.</p>
+      <p>Where data protection law applies, you may request access to, correction or deletion of your personal data, and object to processing based on legitimate interests. Email <a href="mailto:erik.hellman@hellsoft.se">erik.hellman@hellsoft.se</a>. Because diagnostics carry no identifier that ties them to you, we usually cannot find the records of one particular player, and we do not collect extra information to do so. If you contact us, we use your email address and message only to answer you, and keep them only as long as needed.</p>
       <p>You may complain to your local data protection authority or to Sweden's <a href="https://www.imy.se/en/">Authority for Privacy Protection (IMY)</a>.</p>
     </section>
 
     <section aria-labelledby="children">
       <h2 id="children">Children</h2>
-      <p>Malmheim is made for a general audience and does not ask anyone, including children, for names, contact details or other personal information. Diagnostics are anonymous and stay off unless someone turns them on.</p>
+      <p>Malmheim is made for a general audience and does not ask anyone, including children, for names, contact details or other personal information. Diagnostics are anonymous, and a parent or player can turn them off from the main menu.</p>
     </section>
 
     <section aria-labelledby="scope">
