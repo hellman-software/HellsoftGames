@@ -142,16 +142,20 @@
     - {type: tablet, note: "Gets the full desktop layout."}
     - {type: phone, note: "A simpler layout with a tab bar."}
   sync:
-    isPrivate: true
-    license: null
+    isPrivate: false
+    license:
+      spdxId: AGPL-3.0
+      name: GNU Affero General Public License v3.0
+      url: https://github.com/ErikHellman/FantasySimWorld/blob/main/LICENSE
+      osiApproved: true
     description: null
-    pushedAt: 2026-10-11T14:28:57Z
+    pushedAt: 2026-11-04T13:08:44Z
     release:
       tag: v0.7.0
       name: Fantasy Sim World v0.7.0
       publishedAt: 2026-10-11T14:26:28Z
       source: release
-    syncedAt: 2026-10-19
+    syncedAt: 2026-11-27
 
 - id: dungeoncrawl
   title: DungeonCrawl
